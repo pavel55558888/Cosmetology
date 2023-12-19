@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+  <form action="/controlpanel/neworder">
+    <button>Добавить новый товар для продажи</button>
+  </form>
+
+  <form action="/controlpanel/newarticles">
+    <button>Добавить новую статью</button>
+  </form>
+
+  <form action="/controlpanel/updateindex">
+    <button>Редактировать главную старницу</button>
+  </form>
+
+  <form action="/controlpanel/neworderpersonal">
+    <button>Добавить новый товар для личного использования</button>
+  </form>
+
+  <form action="/controlpanel/orderpersonal">
+    <button>Просмотр товара для личного использования</button>
+  </form>
+
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

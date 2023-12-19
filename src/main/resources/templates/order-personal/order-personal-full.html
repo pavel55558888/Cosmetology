@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+    <img class="full_order" id="full_order_img" th:src="${order.img}" alt="Извините, фото не найдено">
+
+    <div id="edit-btn-center">
+      <form class="edit-btn" th:action="@{'/controlpanel/orderprsonal/' + ${order.id} + '/delete'}" method="post">
+        <button>Удалить</button>
+      </form>
+
+      <form class="edit-btn" th:action="@{'/controlpanel/orderpersonal/' + ${order.id} + '/update'}">
+        <button>Редактировать</button>
+      </form>
+    </div>
+
+    <h2 class="full_order" th:text="${order.name}"/>
+    <h4 class="full_order" th:text="${order.purchase_price}"/>
+    <h4 class="full_order" th:text="${order.expiration_date}"/>
+    <h4 class="full_order" th:text="${order.manufacturer}"/>
+    <h4 class="full_order" th:text="${order.in_stock}"/>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

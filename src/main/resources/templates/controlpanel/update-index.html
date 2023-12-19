@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+  <form action="/controlpanel/updateindex/add" method="post" id="form">
+    <h1>Редактирование главной формы</h1>
+
+    <textarea type="text" name="activity" placeholder="Введите сферу деятельности" th:text="${aboutTheSalon.activity}"></textarea>
+    <textarea type="text" name="history" placeholder="Введите историю салона" th:text="${aboutTheSalon.history}"></textarea>
+    <textarea type="text" name="procedures" placeholder="Введите услуги" th:text="${aboutTheSalon.procedures}"></textarea>
+
+    <input type="text" name="img" placeholder="Вставьте ссылку фото" th:value="${addresofthesalon.img}">
+    <input type="text" name="address" placeholder="Введите адрес" th:value="${addresofthesalon.address}">
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Изменить</button>
+  </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

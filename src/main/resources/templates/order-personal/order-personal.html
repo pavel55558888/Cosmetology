@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+  <div class = "div_orders">
+    <div th:each="el : ${list}" id="div_orders">
+      <a th:href="'/controlpanel/orderpersonal/' + ${el.id}"><img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено"></a>
+      <h3 th:text="${el.name}"/>
+      <h4 th:text="'Производитель: ' + ${el.manufacturer}"/>
+      <h4 th:text="'В наличие: ' + ${el.in_stock}" />
+    </div>
+  </div>
+
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

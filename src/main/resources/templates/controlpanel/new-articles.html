@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+    <form action="/controlpanel/newarticles/add" method="post" id="form">
+      <h1>Добавление новой статьи</h1>
+      <input type="text" name="name" placeholder="Введите название для сатьи">
+      <input type="date" name="date" placeholder="Введите дату">
+      <input type="text" name="img" placeholder="Вставьте ссылку на изображение">
+      <textarea name="description" type="text" placeholder="Напишите описание. При необходмосте поле ввода можно сделать больше(Правый нажиний угол)"></textarea>
+
+      <h3 th:text="${error}" style="color: red"/>
+
+      <button>Добавить</button>
+    </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reflection</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+    <div id = "history" th:each="el : ${aboutTheSalon}">
+        <h2 class="history_index">Сфера деятельности</h2>
+        <h4 class="history_index" th:text="${el.activity}"/>
+        <br>
+        <br>
+        <h2 class="history_index">История салона</h2>
+        <h4 class="history_index" th:text="${el.history}"/>
+        <br>
+        <br>
+        <h2 class="history_index">Наши услуги</h2>
+        <h4 class="history_index" th:text="${el.procedures}"/>
+    </div>
+
+    <hr class="hr_index">
+
+    <div id="img_index" th:each="el : ${address}">
+        <img th:src="${el.img}" alt="Извините, фото не найдено" class="img">
+        <br>
+        <br>
+        <h1>Наш адрес</h1>
+        <h3 th:text = "${el.address}"/>
+    </div>
+
+    <hr class="hr_index">
+
+    <h1 id="h1_div">Новости</h1>
+    <div id = "div_index" th:each="el : ${articles}">
+        <h1 th:text="${el.name}"/>
+        <a th:href="'/articles/' + ${el.id}"><img th:src="${el.img}" class="img" id="img_news" alt="Извините, фото не найдено"></a>
+        <h6 th:text="${el.date}"/>
+    </div>
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>
