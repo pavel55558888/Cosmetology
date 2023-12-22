@@ -3,6 +3,7 @@ package com.example.cosmetology.controllers;
 import com.example.cosmetology.models.*;
 import com.example.cosmetology.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,10 @@ public class ControlPanelController {
     ConsumablesRepo consumablesRepo;
     @Autowired
     DailyProfitRepo dailyProfitRepo;
+    @Autowired
+    UserRepo userRepo;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/controlpanel")
@@ -179,4 +184,43 @@ public class ControlPanelController {
         }
         return "redirect:/controlpanel";
     }
+
+    @GetMapping("/controlpanel/newuser")
+    public String newUser(@RequestParam(value = "error",defaultValue = "",required = false) String error, Model model){
+        if (error.equals("username")){
+            model.addAttribute("error","Данный логин занят!");
+        } else if (error.equals("password")) {
+            model.addAttribute("error","Пароль слишком легкий!");
+        }
+        return "controlpanel/new-user";
+    }
+
+    @PostMapping("/controlpanel/newuser/add")
+    public String newUserAdd(@RequestParam String username,
+                             @RequestParam String email,
+                             @RequestParam String password,
+                             @RequestParam String role){
+        if (userRepo.findByUsername(username) != null) {
+            return "redirect:/controlpanel/newuser?error=username";
+        }else if(password.length()<=5){
+            return "redirect:/controlpanel/newuser?error=password";
+        }
+        User user;
+        password = passwordEncoder.encode(password);
+        if (role.toString().equals("USER")){
+            user = new User(username, email, password, true, Collections.singleton(Role.USER));
+        }else if (role.equals("EMPLOYEE")) {
+            user = new User(username, email, password, true, Collections.singleton(Role.EMPLOYEE));
+        }else if (role.equals("ADMIN")) {
+            user = new User(username, email, password, true, Collections.singleton(Role.ADMIN));
+        } else if (role.equals("DEVELOPER")) {
+            user = new User(username, email, password, true, Collections.singleton(Role.DEVELOPER));
+        }else{
+            user = new User(username, email, password, true, Collections.singleton(Role.USER));
+        }
+        System.out.println(role);
+        userRepo.save(user);
+        return "redirect:/controlpanel";
+    }
+
 }

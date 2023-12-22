@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+  <form th:action="@{/controlpanel/newuser/add}" method="post" id="form">
+    <h1>Создание нового пользователя</h1>
+    <input type="text" name="username" placeholder="Введите логин">
+    <input type="text" name="email" placeholder="Введите e-mail">
+    <input type="text" name="password" placeholder="Введите пароль">
+
+    <select type="text" name="role" id="option">
+      <option value="USER">Пользователь</option>
+      <option value="EMPLOYEE">Сотрудник</option>
+      <option value="ADMIN">Администратор</option>
+      <option value="DEVELOPER">Разработчик</option>
+    </select>
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Создать</button>
+
+  </form>
+
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

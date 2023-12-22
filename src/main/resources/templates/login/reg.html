@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reflection</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+    <form th:action="@{/reg/add}" method="post" id="form">
+        <h1>Регистрация</h1>
+        <input type="text" name="username" placeholder="Введите логин">
+        <input type="email" name="email" placeholder="Введите e-mail">
+        <input type="password" name="password" placeholder="Введите пароль">
+
+        <h3 th:text="${error}" style="color: red"/>
+
+        <button>Зарегестрироваться</button>
+    </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Reflection</title>
@@ -14,15 +14,15 @@
   <img class="full_order" id="full_order_img" th:src="${order.img}" alt="Извините, фото не найдено">
 
   <div id="edit-btn-center">
-    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/delete'}" method="post">
+    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/delete'}" method="post" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
       <button>Удалить</button>
     </form>
 
-    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/update'}">
+    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/update'}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
       <button>Редактировать</button>
     </form>
 
-    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/add'}" method="post">
+    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/add'}" method="post" sec:authorize="hasAuthority('DEVELOPER')">
       <button>Добавить в корзину</button>
     </form>
   </div>
@@ -34,10 +34,10 @@
   <h2 class="full_order" th:text="'Используется для ' + ${order.purpose_of_use}"/>
   <br>
   <h4 class="full_order" th:text="${order.description}"/>
-  <hr class="hr_index" id="hr">
-  <h3 class="full_order" th:text="'Годен до: ' + ${order.expiration_date}"/>
-  <h3 class="full_order" th:text="'Закупочная цена: ' + ${order.purchase_price}"/>
-  <h3 class="full_order" th:text="'В наличие: ' + ${order.quantity}"/>
+  <hr class="hr_index" id="hr" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+  <h3 class="full_order" th:text="'Годен до: ' + ${order.expiration_date}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
+  <h3 class="full_order" th:text="'Закупочная цена: ' + ${order.purchase_price}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
+  <h3 class="full_order" th:text="'В наличие: ' + ${order.quantity}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
 
 
 

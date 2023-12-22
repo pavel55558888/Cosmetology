@@ -11,28 +11,32 @@
 
 <main class="container">
 
-  <form action="/controlpanel/neworder">
+  <form th:action="@{/controlpanel/neworder}">
     <button>Добавить новый товар для продажи</button>
   </form>
 
-  <form action="/controlpanel/newarticles">
+  <form th:action="@{/controlpanel/newarticles}">
     <button>Добавить новую статью</button>
   </form>
 
-  <form action="/controlpanel/updateindex">
+  <form th:action="@{/controlpanel/updateindex}">
     <button>Редактировать главную старницу</button>
   </form>
 
-  <form action="/controlpanel/neworderpersonal">
+  <form th:action="@{/controlpanel/neworderpersonal}">
     <button>Добавить новый товар для личного использования</button>
   </form>
 
-  <form action="/controlpanel/orderpersonal">
+  <form th:action="@{/controlpanel/orderpersonal}">
     <button>Просмотр товара для личного использования</button>
   </form>
 
-  <form action="/controlpanel/dailyprofit">
+  <form th:action="@{/controlpanel/dailyprofit}">
     <button>Составить ежедневный отчет</button>
+  </form>
+
+  <form th:action="@{/controlpanel/newuser}">
+    <button>Создать нового пользователя</button>
   </form>
 
 

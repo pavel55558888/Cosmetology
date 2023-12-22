@@ -11,7 +11,7 @@
 
 <main class="container">
 
-  <form action="/controlpanel/neworderdpersonal/add" method="post" id="form">
+  <form th:action="@{/controlpanel/neworderdpersonal/add}" method="post" id="form">
     <h1>Добавление нового товара</h1>
     <input type="text" name="name" placeholder="Введите название">
     <input type="text" name="purchase_price" placeholder="Введите закупочную цену">

@@ -10,7 +10,7 @@
 <div th:replace="layouts/header :: header"></div>
 
 <main class="container">
-    <form action="/controlpanel/newarticles/add" method="post" id="form">
+    <form th:action="@{/controlpanel/newarticles/add}" method="post" id="form">
       <h1>Добавление новой статьи</h1>
       <input type="text" name="name" placeholder="Введите название для сатьи">
       <input type="date" name="date" placeholder="Введите дату">

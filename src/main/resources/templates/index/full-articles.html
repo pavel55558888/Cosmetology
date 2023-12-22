@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Reflection</title>
@@ -17,10 +17,10 @@
     <h3 th:text="${fullarticles.description}"/>
     <h6 th:text="${fullarticles.date}"/>
     <div id = "edit-btn-center">
-      <form th:action="@{'/articles/' + ${fullarticles.id} + '/delete'}" class="edit-btn" method="post">
+      <form th:action="@{'/articles/' + ${fullarticles.id} + '/delete'}" class="edit-btn" method="post" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
         <button>Удалить</button>
       </form>
-      <form th:action="@{'/articles/' + ${fullarticles.id} + '/update'}" class="edit-btn">
+      <form th:action="@{'/articles/' + ${fullarticles.id} + '/update'}" class="edit-btn" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
         <button>Редактировать</button>
       </form>
     </div>

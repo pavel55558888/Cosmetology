@@ -11,7 +11,7 @@
 
 <main class="container">
 
-  <form action="/controlpanel/updateindex/add" method="post" id="form">
+  <form th:action="@{/controlpanel/updateindex/add}" method="post" id="form">
     <h1>Редактирование главной формы</h1>
 
     <textarea type="text" name="activity" placeholder="Введите сферу деятельности" th:text="${aboutTheSalon.activity}"></textarea>
