@@ -217,6 +217,13 @@ form > textarea{
     border-radius: 10px;
 }
 
+#report{
+    border-radius: 10px;
+    border: 1px solid;
+    box-shadow: 0 0 10px #444;
+    padding: 10px 35px;
+    margin: 15px;
+}
 
 
 

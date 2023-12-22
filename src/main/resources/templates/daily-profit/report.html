@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflection</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+
+  <form th:action="@{/controlpanel/dailyprofit/add}" method="post" id="form">
+    <h1>Формирование ежедневного отчета</h1>
+    <input type="date" name="date" placeholder="Введите дату">
+    <input type="text" name="services" placeholder="Введите оказанные услуги">
+    <input type="text" name="profit" placeholder="Введите сумму прибыли">
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Добавить</button>
+
+    <div th:each="el : ${list}">
+      <div id="report">
+        <h1 th:text="${el.date}"/>
+        <h3 th:text="${el.services}"/>
+        <h3 th:text="${el.profit}"/>
+      </div>
+    </div>
+  </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

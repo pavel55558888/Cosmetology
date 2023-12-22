@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -23,6 +24,8 @@ public class ControlPanelController {
     AboutTheSalonRepo aboutTheSalonRepo;
     @Autowired
     ConsumablesRepo consumablesRepo;
+    @Autowired
+    DailyProfitRepo dailyProfitRepo;
 
 
     @GetMapping("/controlpanel")
@@ -151,5 +154,29 @@ public class ControlPanelController {
         model.addAttribute("list", list);
 
         return "order-personal/order-personal";
+    }
+
+    @GetMapping("/controlpanel/dailyprofit")
+    public String dailyProfit(Model model, @RequestParam(value = "error" , defaultValue = "" ,required = false) String error){
+        List<DailyProfit> list = dailyProfitRepo.findAll();
+        Collections.reverse(list);
+        model.addAttribute("list",list);
+        if (error.equals("null")) {
+            model.addAttribute("error", "Заполните все поля!");
+        }
+        return "daily-profit/report";
+    }
+
+    @PostMapping("/controlpanel/dailyprofit/add")
+    public String dailyProfitAdd(@RequestParam String date,
+                                 @RequestParam String services,
+                                 @RequestParam String profit){
+        if (date.equals("") || services.equals("") || profit.equals("")){
+            return "redirect:/controlpanel/dailyprofit?error=null";
+        }else {
+            DailyProfit dailyProfit = new DailyProfit(date, services, profit);
+            dailyProfitRepo.save(dailyProfit);
+        }
+        return "redirect:/controlpanel";
     }
 }
