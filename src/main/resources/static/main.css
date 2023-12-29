@@ -119,8 +119,9 @@ footer{
 
 #full_order_img{
     border-radius: 10px;
-    margin:0 20% 0 20%;
-    width:60%
+    margin:0 25% 0 25%;
+    width:50%;
+    box-shadow: 0 0 10px #444;
 }
 
 #div_index{
@@ -201,6 +202,20 @@ form > textarea{
     box-shadow: 0 0 15px #444;
 }
 
+#div_orders_admin{
+    border-radius: 10px;
+    border: 0px solid;
+    box-shadow: 0 0 10px #444;
+}
+
+#img_order_admin{
+    border-radius: 10px;
+}
+
+#img_order_admin:hover{
+    box-shadow: 0 0 15px #444;
+}
+
 .edit-btn {
     display: inline-block;
 }
@@ -229,6 +244,19 @@ form > textarea{
     box-shadow: 0 0 10px #444;
     padding: 15px 15px;
     margin: 15px;
+}
+
+#but_exit{
+    all: initial;
+    all: unset;
+    margin-left: 15px;
+    color: #000000;
+    font-weight: 300;
+    cursor:pointer;
+}
+
+#but_exit:hover{
+    color: #8C8C8C;
 }
 
 

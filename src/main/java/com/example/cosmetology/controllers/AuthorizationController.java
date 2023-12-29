@@ -3,6 +3,8 @@ package com.example.cosmetology.controllers;
 import com.example.cosmetology.models.Role;
 import com.example.cosmetology.models.User;
 import com.example.cosmetology.repository.UserRepo;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -57,6 +59,5 @@ public class AuthorizationController {
         userRepo.save(user);
         return "redirect:/login";
     }
-
 
 }

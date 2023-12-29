@@ -2,7 +2,9 @@
     <span class="logo"><a href="/">REFLECTION</a></span>
     <nav>
         <a th:href="@{/}">Главная страница</a>
+
         <a th:href="@{/orders}">Товары</a>
+
         <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('EMPLOYEE') || hasAuthority('DEVELOPER')">
            <a th:href="@{/controlpanel}">Панель управления</a>
         </span>
@@ -11,8 +13,8 @@
             <a th:href="@{/login}">Войти</a>
         </span>
 
-
-
-
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button id="but_exit">Выйти</button>
+        </form>
     </nav>
 </header>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Reflection</title>
@@ -11,9 +11,18 @@
 
 <main class="container">
 
-    <div class = "div_orders">
-        <div th:each="el : ${orders}" id="div_orders">
+    <div class = "div_orders" sec:authorize="hasAuthority('USER') || hasAuthority('EMPLOYEE') || !isAuthenticated()">
+        <div th:each="el : ${ordersUser}" id="div_orders">
             <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено"></a>
+            <h3 th:text="${el.name}"/>
+            <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
+            <h4 th:text="${el.manufacturer}"/>
+        </div>
+    </div>
+
+    <div class = "div_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+        <div th:each="el : ${ordersAdmin}" id="div_orders_admin">
+            <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order_admin" alt="Извините, фото не найдено"></a>
             <h3 th:text="${el.name}"/>
             <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
             <h4 th:text="${el.manufacturer}"/>

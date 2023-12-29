@@ -2,6 +2,8 @@ package com.example.cosmetology.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "orders")
 public class Orders {
@@ -150,5 +152,17 @@ public class Orders {
                 ", quantity='" + quantity + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Orders orders)) return false;
+        return Objects.equals(getName(), orders.getName()) && Objects.equals(getPrice(), orders.getPrice()) && Objects.equals(getImg(), orders.getImg());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPrice(), getImg());
     }
 }

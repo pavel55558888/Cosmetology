@@ -21,7 +21,10 @@ public class OrdersController {
     public String orders(Model model){
         List<Orders> orders = ordersRepo.findAll();
         Collections.reverse(orders);
-        model.addAttribute("orders", orders);
+        model.addAttribute("ordersAdmin", orders);
+        Set<Orders> UniqueSortingOrders = new HashSet<>(orders);
+        List<Orders> ordersSorted = new ArrayList<>(UniqueSortingOrders);
+        model.addAttribute("ordersUser", ordersSorted);
         return "orders/orders";
     }
 
