@@ -1,5 +1,7 @@
 2023-12-30T13:36:21.260+03:00  WARN 18056 --- [nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/mail' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
 2023-12-30T13:36:21.268+03:00  WARN 18056 --- [nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/mail' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+
+
 org.springframework.mail.MailSendException: Mail server connection failed. Failed messages: org.eclipse.angus.mail.util.MailConnectException: Couldn't connect to host, port: smtp.google.com, 587; timeout -1;
   nested exception is:
 	java.net.ConnectException: Connection timed out: connect; message exception details (1) are:
