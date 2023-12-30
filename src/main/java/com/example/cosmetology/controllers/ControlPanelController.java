@@ -1,5 +1,8 @@
 package com.example.cosmetology.controllers;
 
+import com.example.cosmetology.models.AboutTheSalon;
+import com.example.cosmetology.models.AddressOfTheSalon;
+import com.example.cosmetology.models.Articles;
 import com.example.cosmetology.models.*;
 import com.example.cosmetology.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -222,5 +225,4 @@ public class ControlPanelController {
         userRepo.save(user);
         return "redirect:/controlpanel";
     }
-
 }
