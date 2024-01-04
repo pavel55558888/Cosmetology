@@ -22,7 +22,7 @@
       <button>Редактировать</button>
     </form>
 
-    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/add'}" method="post" sec:authorize="hasAuthority('DEVELOPER')">
+    <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER')">
       <button>Добавить в корзину</button>
     </form>
   </div>

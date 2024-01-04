@@ -55,7 +55,4 @@ public class SecurityController {
         return new BCryptPasswordEncoder();
     }
 
-
-    private static Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    public static String username = authentication.getName();
 }
