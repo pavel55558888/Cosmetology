@@ -32,5 +32,12 @@ public class BasketController {
         return "basket/basket";
     }
 
+    @PostMapping("/basket/{id}/delete")
+    public String basketDelete(@PathVariable(value = "id") long id){
+        BasketServiceImpl basketServiceImpl = new BasketServiceImpl();
+        basketServiceImpl.basketDelete(id);
+        return "redirect:/basket";
+    }
+
 
 }

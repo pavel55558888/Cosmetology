@@ -33,8 +33,16 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public void basketDelete() {
+    public void basketDelete(long id) {
+        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
 
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+
+        Basket basket = session.get(Basket.class, id);
+        session.delete(basket);
+
+        session.getTransaction().commit();
     }
 
     @Override
@@ -47,8 +55,19 @@ public class BasketServiceImpl implements BasketService {
         session.beginTransaction();
 
         List<Basket> list = session.createQuery("from Basket where username = :param1").setParameter("param1",username).getResultList();
-        System.out.println(username);
         session.getTransaction().commit();
         return list;
+    }
+
+    @Override
+    public void basketDeleteName(String name) {
+        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+
+        session.createQuery("delete Basket where name = :param1").setParameter("param1", name).executeUpdate();
+
+        session.getTransaction().commit();
     }
 }

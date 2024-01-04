@@ -16,6 +16,9 @@
             <h3 th:text="${el.name}"/>
             <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
             <h4 th:text="${el.manufacturer}"/>
+            <form th:action="@{'/basket/' + ${el.getId()} + '/delete'}" method="post">
+                <button>Удалить</button>
+            </form>
         </div>
     </div>
 </main>

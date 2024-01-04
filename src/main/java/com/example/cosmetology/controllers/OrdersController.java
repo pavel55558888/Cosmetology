@@ -1,5 +1,6 @@
 package com.example.cosmetology.controllers;
 
+import com.example.cosmetology.basket.service.impl.BasketServiceImpl;
 import com.example.cosmetology.models.Orders;
 import com.example.cosmetology.repository.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,10 @@ public class OrdersController {
 
     @PostMapping("/orders/{id}/delete")
     public String deleteOrder(@PathVariable(value = "id") long id){
+        Orders orders = ordersRepo.findById(id).orElse(new Orders());
         ordersRepo.deleteById(id);
+        BasketServiceImpl basketServiceImpl = new BasketServiceImpl();
+        basketServiceImpl.basketDeleteName(orders.getName());
         return "redirect:/orders";
     }
 

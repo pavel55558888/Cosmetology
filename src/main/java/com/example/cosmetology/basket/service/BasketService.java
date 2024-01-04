@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface BasketService {
     void basketAdd(String name,String price,String manufacturer,String countryOfManufacture,String img,String purchasePrice);
-    void basketDelete();
+    void basketDelete(long id);
     List<Basket> basketSelect();
+    void basketDeleteName(String name);
 }

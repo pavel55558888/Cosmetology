@@ -9,6 +9,10 @@
            <a th:href="@{/controlpanel}">Панель управления</a>
         </span>
 
+        <span sec:authorize="isAuthenticated() || hasAuthority('USER') || hasAuthority('DEVLOPER')">
+           <a th:href="@{/basket}">Корзина</a>
+        </span>
+
         <span sec:authorize="!isAuthenticated()">
             <a th:href="@{/login}">Войти</a>
         </span>
