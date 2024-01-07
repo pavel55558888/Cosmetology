@@ -11,7 +11,7 @@ public class DailyProfit {
     private long id;
     @Column(name = "date")
     private String date;
-    @Column(name = "services")
+    @Column(name = "services", length = 1000)
     private String services;
     @Column(name = "profit")
     private String profit;

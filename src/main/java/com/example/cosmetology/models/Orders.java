@@ -29,7 +29,7 @@ public class Orders {
     private String purchase_price;
     @Column(name = "quantity")
     private String quantity;
-    @Column(name = "description")
+    @Column(name = "description", length = 19000)
     private String description;
 
     public Orders() {
@@ -134,24 +134,6 @@ public class Orders {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", expiration_date='" + expiration_date + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", country_of_manufacture='" + country_of_manufacture + '\'' +
-                ", purpose_of_use='" + purpose_of_use + '\'' +
-                ", img='" + img + '\'' +
-                ", purchase_price='" + purchase_price + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 
     @Override

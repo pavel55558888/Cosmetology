@@ -39,8 +39,16 @@ public class AuthorizationController {
     public String reg(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
         if (error.equals("username")){
             model.addAttribute("error","Данный логин занят!");
-        } else if (error.equals("password")) {
+        } else if (error.equals("usernameMin")) {
+            model.addAttribute("error","Логин слишком легкий!");
+        } else if (error.equals("usernameMax")) {
+            model.addAttribute("error","Логин слишком длинный!");
+        } else if (error.equals("passwordMin")) {
             model.addAttribute("error","Пароль слишком легкий!");
+        } else if (error.equals("passwordMax")) {
+            model.addAttribute("error","Пароль слишком длинный!");
+        } else if (error.equals("emailMax")) {
+            model.addAttribute("error","Почта слишком длинная!");
         }
         return "login/reg";
     }
@@ -52,7 +60,15 @@ public class AuthorizationController {
         if (userRepo.findByUsername(username) != null) {
             return "redirect:/reg?error=username";
         }else if(password.length()<=5){
-            return "redirect:/reg?error=password";
+            return "redirect:/reg?error=passwordMin";
+        } else if (username.length()<=5) {
+            return "redirect:/reg?error=usernameMin";
+        } else if (username.length()>=250) {
+            return "redirect:/reg?error=usernameMax";
+        } else if(password.length()>=250){
+            return "redirect:/reg?error=passwordMax";
+        } else if(email.length()>=250){
+            return "redirect:/reg?error=mailMax";
         }
         password = passwordEncoder.encode(password);
         User user = new User(username, email, password, true, Collections.singleton(Role.USER));

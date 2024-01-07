@@ -54,6 +54,8 @@ public class IndexControllers {
                                  @RequestParam(value = "error", defaultValue = "", required = false) String error){
         if (error.equals("null")) {
             model.addAttribute("error", "Заполните все поля!");
+        } else if (error.equals("max")) {
+            model.addAttribute("error", "Какое-то из полей слишком маленькое");
         }
         Articles articlesUpdate = articlesRepo.findById(id).orElse(new Articles());
         model.addAttribute("update", articlesUpdate);
@@ -68,7 +70,9 @@ public class IndexControllers {
                                     @RequestParam String description){
         if (name.equals("") || date.equals("") || img.equals("") || description.equals("")){
             return "redirect:/articles/{id}/update?error=null";
-        }else {
+        } else if (name.length() >= 250 || date.length() >= 250 || img.length() >= 250 || description.length() >= 2000) {
+            return "redirect:/articles/{id}/update?error=max";
+        } else {
             Articles articlesUpdate = articlesRepo.findById(id).orElse(new Articles());
             articlesUpdate.setName(name);
             articlesUpdate.setDate(date);

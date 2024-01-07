@@ -38,6 +38,8 @@ public class OrderPersonalController {
         model.addAttribute("order", consumables);
         if (error.equals("null")){
             model.addAttribute("error", "Заполните все поля!");
+        }else if (error.equals("max")){
+            model.addAttribute("error", "Какое-то из полей слишком длинное!");
         }
         return "order-personal/order-personal-update";
     }
@@ -52,7 +54,10 @@ public class OrderPersonalController {
                                          @RequestParam String in_stock){
         if (name.equals("") || purchase_price.equals("") || expiration_date.equals("") || manufacturer.equals("") || img.equals("") || in_stock.equals("")){
             return "redirect:/controlpanel/orderpersonal/{id}/update?error=null";
-        }else {
+        } else if (name.length() >= 250 || purchase_price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
+                || img.length() >= 250 || in_stock.length() >= 250){
+            return "redirect:/controlpanel/orderpersonal/{id}/update?error=max";
+        } else {
             Consumables consumables = consumablesRepo.findById(id).orElse(new Consumables());
             consumables.setName(name);
             consumables.setPurchase_price(purchase_price);

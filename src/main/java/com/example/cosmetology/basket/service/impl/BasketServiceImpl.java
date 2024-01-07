@@ -19,7 +19,7 @@ public class BasketServiceImpl implements BasketService {
     public void basketAdd(String name, String price, String manufacturer, String countryOfManufacture, String img, String purchasePrice) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
             Basket hibernate = new Basket(username,name,price,manufacturer,countryOfManufacture,img,purchasePrice);
@@ -34,7 +34,7 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void basketDelete(long id) {
-        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
 
         Session session = factory.getCurrentSession();
         session.beginTransaction();
@@ -50,18 +50,19 @@ public class BasketServiceImpl implements BasketService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
-        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
         Session session = factory.getCurrentSession();
         session.beginTransaction();
 
         List<Basket> list = session.createQuery("from Basket where username = :param1").setParameter("param1",username).getResultList();
         session.getTransaction().commit();
+
         return list;
     }
 
     @Override
     public void basketDeleteName(String name) {
-        SessionFactory factory = new Configuration().configure("basket.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
 
         Session session = factory.getCurrentSession();
         session.beginTransaction();
@@ -70,4 +71,5 @@ public class BasketServiceImpl implements BasketService {
 
         session.getTransaction().commit();
     }
+
 }

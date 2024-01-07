@@ -9,11 +9,11 @@ public class AboutTheSalon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "activity")
+    @Column(name = "activity",length = 5000)
     private String activity;
-    @Column(name = "history")
+    @Column(name = "history", length = 5000)
     private String History;
-    @Column(name = "procedures")
+    @Column(name = "procedures", length = 5000)
     private String procedures;
 
     public AboutTheSalon() {
@@ -47,14 +47,5 @@ public class AboutTheSalon {
 
     public void setProcedures(String procedures) {
         this.procedures = procedures;
-    }
-
-    @Override
-    public String toString() {
-        return "AboutTheSalon{" +
-                "activity='" + activity + '\'' +
-                ", History='" + History + '\'' +
-                ", procedures='" + procedures + '\'' +
-                '}';
     }
 }

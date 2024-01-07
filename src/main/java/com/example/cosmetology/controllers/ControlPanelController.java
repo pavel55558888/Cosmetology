@@ -35,16 +35,18 @@ public class ControlPanelController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-
-    @GetMapping("/controlpanel")
-    public String controlPanel(){
-        return "controlPanel/control-panel";
-    }
-
     @GetMapping("/controlpanel/newarticles")
     public String newArticles(@RequestParam(value = "error", defaultValue = "", required = false) String error,Model model){
         if (error.equals("null")){
             model.addAttribute("error","Заполните все поля!");
+        } else if (error.equals("name")) {
+            model.addAttribute("error","Название слишком длинное!");
+        } else if (error.equals("date")) {
+            model.addAttribute("error","Дата слишком длинная!");
+        } else if (error.equals("img")) {
+            model.addAttribute("error","Ссылка на фото слишком длинная!");
+        } else if (error.equals("description")) {
+            model.addAttribute("error","Описание сликом длинное!");
         }
         return "controlpanel/new-articles";
     }
@@ -57,18 +59,30 @@ public class ControlPanelController {
 
         if (name.equals("") || date.equals("") || img.equals("") || description.equals("")){
             return "redirect:/controlpanel/newarticles?error=null";
-        }else {
+        } else if (name.length() >= 250) {
+            return "redirect:/controlpanel/newarticles?error=name";
+        } else if (date.length() >= 250) {
+            return "redirect:/controlpanel/newarticles?error=date";
+        } else if (img.length() >= 250) {
+            return "redirect:/controlpanel/newarticles?error=img";
+        } else if (description.length() >= 20000) {
+            return "redirect:/controlpanel/newarticles?error=description";
+        } else {
             Articles articles = new Articles(name, date, img, description);
             articlesRepo.save(articles);
         }
 
-        return "redirect:/controlpanel";
+        return "redirect:/";
     }
 
     @GetMapping("/controlpanel/neworder")
     public String newOrder(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
         if (error.equals("null")){
             model.addAttribute("error", "Заполните все поля!");
+        } else if (error.equals("max")) {
+            model.addAttribute("error", "Какое-то поле слишком длинное!");
+        } else if (error.equals("description")) {
+            model.addAttribute("error", "Описание слишком длинное!");
         }
         return "controlpanel/new-order";
     }
@@ -88,11 +102,15 @@ public class ControlPanelController {
         if(name.equals("") || price.equals("") || expiration_date.equals("") || manufacturer.equals("") || country_of_manufacture.equals("")
                 || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("")){
             return "redirect:/controlpanel/neworder?error=null";
-        }else{
+        } else if (name.length() >= 250 || price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
+                || country_of_manufacture.length() >= 250 || purchase_price.length() >= 250 || purpose_of_use.length() >= 250 || img.length() >= 250
+                || quantity.length() >= 250 || description.length() >= 19000) {
+            return "redirect:/controlpanel/neworder?error=max";
+        } else{
             Orders orders = new Orders(name, price,expiration_date,manufacturer,country_of_manufacture,purpose_of_use,img,purchase_price,quantity,description);
             ordersRepo.save(orders);
         }
-        return "redirect:/controlpanel";
+        return "redirect:/orders";
     }
 
     @GetMapping("/controlpanel/updateindex")
@@ -105,6 +123,8 @@ public class ControlPanelController {
 
         if (error.equals("null")){
             model.addAttribute("error", "Заполните все поля!");
+        } else if (error.equals("max")){
+            model.addAttribute("error", "Какое-то поле слишком длинное!");
         }
 
         return "controlpanel/update-index";
@@ -118,7 +138,9 @@ public class ControlPanelController {
                                  @RequestParam String address){
         if (activity.equals("") || history.equals("") || procedures.equals("") || img.equals("") || address.equals("")){
             return "redirect:/controlpanel/updateindex?error=null";
-        }else{
+        } else if (activity.length() >= 5000 || history. length() >= 5000 || procedures.length() >= 5000 || img.length() >= 250 || address.length() >= 250) {
+            return "redirect:/controlpanel/updateindex?error=max";
+        } else{
             AboutTheSalon aboutTheSalon = aboutTheSalonRepo.findById(1L).orElse(new AboutTheSalon());
             aboutTheSalon.setActivity(activity);
             aboutTheSalon.setHistory(history);
@@ -130,13 +152,15 @@ public class ControlPanelController {
             addressOfTheSalon.setAddress(address);
             addressOfTheSalonRepo.save(addressOfTheSalon);
         }
-        return "redirect:/controlpanel";
+        return "redirect:/";
     }
 
     @GetMapping("/controlpanel/neworderpersonal")
     public String newOrderPersonal(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
         if (error.equals("null")){
             model.addAttribute("error", "Заполните все поля!");
+        } else if (error.equals("max")){
+            model.addAttribute("error", "Какое-то поле слишком длинное!");
         }
         return "controlpanel/new-order-personal";
     }
@@ -150,10 +174,13 @@ public class ControlPanelController {
                                       @RequestParam String in_stock){
         if (name.equals("") || purchase_price.equals("") || expiration_date.equals("") || manufacturer.equals("") || img.equals("") || in_stock.equals("")){
             return "redirect:/controlpanel/neworderpersonal?error=null";
+        } else if (name.length() >= 250 || purchase_price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
+                || img.length() >= 250 || in_stock.length() >= 250){
+            return "redirect:/controlpanel/neworderpersonal?error=max";
         }
         Consumables consumables = new Consumables(name,purchase_price,expiration_date,manufacturer,img,in_stock);
         consumablesRepo.save(consumables);
-        return "redirect:/controlpanel";
+        return "redirect:/controlpanel/orderpersonal";
     }
 
     @GetMapping("/controlpanel/orderpersonal")
@@ -171,6 +198,8 @@ public class ControlPanelController {
         model.addAttribute("list",list);
         if (error.equals("null")) {
             model.addAttribute("error", "Заполните все поля!");
+        } else if(error.equals("max")) {
+            model.addAttribute("error", "Какое-то из полей слишком длинное");
         }
         return "daily-profit/report";
     }
@@ -181,19 +210,23 @@ public class ControlPanelController {
                                  @RequestParam String profit){
         if (date.equals("") || services.equals("") || profit.equals("")){
             return "redirect:/controlpanel/dailyprofit?error=null";
-        }else {
+        } else if (date.length() >= 250 || profit.length() >=250 || services.length() >= 1000) {
+            return "redirect:/controlpanel/dailyprofit?error=max";
+        } else {
             DailyProfit dailyProfit = new DailyProfit(date, services, profit);
             dailyProfitRepo.save(dailyProfit);
         }
-        return "redirect:/controlpanel";
+        return "redirect:/";
     }
 
     @GetMapping("/controlpanel/newuser")
     public String newUser(@RequestParam(value = "error",defaultValue = "",required = false) String error, Model model){
         if (error.equals("username")){
             model.addAttribute("error","Данный логин занят!");
-        } else if (error.equals("password")) {
-            model.addAttribute("error","Пароль слишком легкий!");
+        } else if (error.equals("min")) {
+            model.addAttribute("error","Какое-то из полей слишком слишком короткое!");
+        } else if (error.equals("max")) {
+            model.addAttribute("error","Какое-то из полей слишком слишком длинное!");
         }
         return "controlpanel/new-user";
     }
@@ -205,8 +238,10 @@ public class ControlPanelController {
                              @RequestParam String role){
         if (userRepo.findByUsername(username) != null) {
             return "redirect:/controlpanel/newuser?error=username";
-        }else if(password.length()<=5){
-            return "redirect:/controlpanel/newuser?error=password";
+        }else if(password.length()<=5 || username.length() <=5 || email.length() <=5){
+            return "redirect:/controlpanel/newuser?error=min";
+        } else if (username.length() >= 250 || email.length() >= 250 || password.length() >=250) {
+            return "redirect:/controlpanel/newuser?error=max";
         }
         User user;
         password = passwordEncoder.encode(password);
@@ -223,6 +258,6 @@ public class ControlPanelController {
         }
         System.out.println(role);
         userRepo.save(user);
-        return "redirect:/controlpanel";
+        return "redirect:/";
     }
 }

@@ -10,14 +10,29 @@
 <div th:replace="layouts/header :: header"></div>
 
 <main class="container">
-    <div class = "div_orders">
+    <h1 class="basket">Корзина</h1>
+    <div class = "div_basket">
         <div th:each="el : ${list}" id="div_orders">
-            <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено"></a>
+            <img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено">
             <h3 th:text="${el.name}"/>
             <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
             <h4 th:text="${el.manufacturer}"/>
+
             <form th:action="@{'/basket/' + ${el.getId()} + '/delete'}" method="post">
                 <button>Удалить</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="decoration">
+        <div>
+            <h4 th:text="'Всего товаров: ' + ${quantity} + ' шт.'"/>
+            <h4 th:text="'Сумма к оплате: ' + ${sumPrice} + ' рублей'"/>
+        </div>
+
+        <div>
+            <form action="">
+                <button>Заказать</button>
             </form>
         </div>
     </div>

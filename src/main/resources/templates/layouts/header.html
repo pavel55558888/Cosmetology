@@ -1,24 +1,55 @@
 <header class="container" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
     <span class="logo"><a href="/">REFLECTION</a></span>
     <nav>
-        <a th:href="@{/}">Главная страница</a>
 
-        <a th:href="@{/orders}">Товары</a>
-
-        <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('EMPLOYEE') || hasAuthority('DEVELOPER')">
-           <a th:href="@{/controlpanel}">Панель управления</a>
-        </span>
-
-        <span sec:authorize="isAuthenticated() || hasAuthority('USER') || hasAuthority('DEVLOPER')">
-           <a th:href="@{/basket}">Корзина</a>
-        </span>
-
-        <span sec:authorize="!isAuthenticated()">
-            <a th:href="@{/login}">Войти</a>
-        </span>
-
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <button id="but_exit">Выйти</button>
-        </form>
     </nav>
+    <div class="dropdown">
+        <button class="dropbtn">☰</button>
+        <div class="dropdown-content">
+            <a th:href="@{/}">Главная страница</a>
+
+            <a th:href="@{/orders}">Товары</a>
+
+            <span sec:authorize="hasAuthority('USER') || hasAuthority('DEVLOPER')">
+                <a th:href="@{/basket}">Корзина</a>
+            </span>
+
+            <span sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">Войти</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/neworder}">Добавить новый товар для продажи</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/newarticles}">Добавить новую статью</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/controlpanel/updateindex}">Редактировать главную старницу</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/neworderpersonal}">Добавить новый товар для личного использования</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/orderpersonal}">Просмотр товара для личного использования</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/dailyprofit}">Составить ежедневный отчет</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/controlpanel/newuser}">Создать нового пользователя</a>
+            </span>
+
+
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button id="but_exit">Выйти</button>
+            </form>
+        </div>
+    </div>
 </header>

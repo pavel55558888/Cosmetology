@@ -29,6 +29,11 @@ public class BasketController {
     public String basket(Model model){
         List<Basket> list = basketServiceImpl.basketSelect();
         model.addAttribute("list",list);
+        int sumPrice = list.stream().mapToInt(obj -> Integer.parseInt(obj.getPrice())).sum();
+        model.addAttribute("sumPrice",sumPrice);
+        int quantity = list.size();
+        model.addAttribute("quantity",quantity);
+
         return "basket/basket";
     }
 

@@ -47,11 +47,4 @@ public class AddressOfTheSalon {
         this.img = img;
     }
 
-    @Override
-    public String toString() {
-        return "AddressOfTheSalon{" +
-                "address='" + address + '\'' +
-                ", img='" + img + '\'' +
-                '}';
-    }
 }

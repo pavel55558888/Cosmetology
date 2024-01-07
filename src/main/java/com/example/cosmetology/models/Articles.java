@@ -16,7 +16,7 @@ public class Articles {
     private String name;
     @Column(name = "img")
     private String img;
-    @Column(name = "description")
+    @Column(name = "description", length = 20000)
     private String description;
 
     public Articles() {

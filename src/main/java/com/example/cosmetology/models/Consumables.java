@@ -91,16 +91,4 @@ public class Consumables {
         this.in_stock = in_stock;
     }
 
-    @Override
-    public String toString() {
-        return "Consumables{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", purchase_price='" + purchase_price + '\'' +
-                ", expiration_date='" + expiration_date + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", img='" + img + '\'' +
-                ", in_stock='" + in_stock + '\'' +
-                '}';
-    }
 }

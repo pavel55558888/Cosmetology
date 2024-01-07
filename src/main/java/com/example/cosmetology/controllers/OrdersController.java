@@ -50,7 +50,9 @@ public class OrdersController {
         Orders order = ordersRepo.findById(id).orElse(new Orders());
         model.addAttribute("order", order);
         if (error.equals("null")){
-            model.addAttribute("error","Заполните все поля");
+            model.addAttribute("error","Заполните все поля!");
+        }else if (error.equals("max")){
+            model.addAttribute("error","Какое-то из полей слишком длинное!");
         }
         return "orders/update-order";
     }
@@ -70,6 +72,10 @@ public class OrdersController {
         if(name.equals("") || price.equals("") || expiration_date.equals("") || manufacturer.equals("") || country_of_manufacture.equals("")
                 || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("")){
             return "redirect:/orders/{id}/update?error=null";
+        }else if (name.length() >= 250 || price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
+                || country_of_manufacture.length() >= 250 || purchase_price.length() >= 250 || purpose_of_use.length() >= 250 || img.length() >= 250
+                || quantity.length() >= 250 || description.length() >= 19000) {
+            return "redirect:/orders/{id}/update?error=max";
         }else{
             Orders orders = ordersRepo.findById(id).orElse(new Orders());
             orders.setName(name);
