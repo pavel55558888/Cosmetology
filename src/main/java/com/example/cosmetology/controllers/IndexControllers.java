@@ -1,5 +1,6 @@
 package com.example.cosmetology.controllers;
 
+import com.example.cosmetology.expired_product.service.impl.ExpiredProductImpl;
 import com.example.cosmetology.models.AboutTheSalon;
 import com.example.cosmetology.models.AddressOfTheSalon;
 import com.example.cosmetology.models.Articles;
@@ -32,6 +33,13 @@ public class IndexControllers {
 
         List<Articles> articles = articlesRepo.findAll();
         model.addAttribute("articles", articles);
+
+        ExpiredProductImpl expiredProduct = new ExpiredProductImpl();
+        if (!expiredProduct.SelectOrdersBoolean()){
+            model.addAttribute("ordersInfo", "Есть продаваемый товар, у которого срок годности меньше 6 месяцев");
+        } if (!expiredProduct.SelectPersonalOrdersBoolean()){
+            model.addAttribute("ordersPersonalInfo", "Есть личный товар, у которого срок годности меньше 6 месяцев");
+        }
         return "index/index";
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Reflection</title>
@@ -11,7 +11,7 @@
 
 <main class="container">
 
-  <h1 class="basket">Каталог товаров для личного использования</h1>
+  <h1 class="basket">Товары, у которых срок годности заканчивается через 6 месяцев или раньше</h1>
 
   <div class = "div_orders">
     <div th:each="el : ${list}" id="div_orders">
@@ -21,7 +21,6 @@
       <h4 th:text="'В наличие: ' + ${el.in_stock}" />
     </div>
   </div>
-
 
 </main>
 

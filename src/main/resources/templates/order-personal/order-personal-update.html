@@ -15,7 +15,7 @@
     <h1>Редактирование товара</h1>
     <input type="text" name="name" placeholder="Введите название" th:value="${order.name}">
     <input type="text" name="purchase_price" placeholder="Введите закупочную стоимость" th:value="${order.purchase_price}">
-    <input type="text" name="expiration_date" placeholder="Введите срок годности" th:value="${order.expiration_date}">
+    <input type="date" name="expiration_date" placeholder="Введите срок годности" th:value="${order.expiration_date}">
     <input type="text" name="manufacturer" placeholder="Введите производителя" th:value="${order.manufacturer}">
     <input type="text" name="img" placeholder="Вставьте ссылку на фото" th:value="${order.img}">
     <input type="text" name="in_stock" placeholder="Введите колличество в наличии" th:value="${order.in_stock}">

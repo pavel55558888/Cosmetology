@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Reflection</title>
@@ -10,6 +10,14 @@
 <div th:replace="layouts/header :: header"></div>
 
 <main class="container">
+
+    <div class="info_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+        <a th:text="${ordersInfo}" style="color: red" th:href="@{/expired-product}"/>
+    </div>
+
+    <div class="info_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+        <a th:text="${ordersPersonalInfo}" style="color: red" th:href="@{/expired-product-personal}"/>
+    </div>
 
     <div id = "history" th:each="el : ${aboutTheSalon}">
         <h2 class="history_index">Сфера деятельности</h2>

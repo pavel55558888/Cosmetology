@@ -24,7 +24,7 @@ public class SecurityController {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/controlpanel/**","/orders/{id}/update","/orders/{id}/delete",
-                                "/articles/{}/update","/articles/{id}/delete","/basket").authenticated()
+                                "/articles/{}/update","/articles/{id}/delete","/basket","/expired-product-personal","/expired-product").authenticated()
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 )

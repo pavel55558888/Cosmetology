@@ -3,6 +3,8 @@ package com.example.cosmetology.models;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "consumables")
 public class Consumables {
@@ -91,4 +93,15 @@ public class Consumables {
         this.in_stock = in_stock;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Consumables that)) return false;
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getPurchase_price(), that.getPurchase_price()) && Objects.equals(getExpiration_date(), that.getExpiration_date()) && Objects.equals(getManufacturer(), that.getManufacturer()) && Objects.equals(getImg(), that.getImg()) && Objects.equals(getIn_stock(), that.getIn_stock());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPurchase_price(), getExpiration_date(), getManufacturer(), getImg(), getIn_stock());
+    }
 }

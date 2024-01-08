@@ -140,11 +140,11 @@ public class Orders {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Orders orders)) return false;
-        return Objects.equals(getName(), orders.getName()) && Objects.equals(getPrice(), orders.getPrice()) && Objects.equals(getImg(), orders.getImg());
+        return Objects.equals(getName(), orders.getName()) && Objects.equals(getImg(), orders.getImg());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPrice(), getImg());
+        return Objects.hash(getName(), getImg());
     }
 }

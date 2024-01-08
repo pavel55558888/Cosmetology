@@ -8,9 +8,13 @@
         <div class="dropdown-content">
             <a th:href="@{/}">Главная страница</a>
 
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/dailyprofit}">Составить ежедневный отчет</a>
+            </span>
+
             <a th:href="@{/orders}">Товары</a>
 
-            <span sec:authorize="hasAuthority('USER') || hasAuthority('DEVLOPER')">
+            <span sec:authorize="hasAuthority('USER') || hasAuthority('DEVELOPER')">
                 <a th:href="@{/basket}">Корзина</a>
             </span>
 
@@ -38,14 +42,17 @@
                 <a th:href="@{/controlpanel/orderpersonal}">Просмотр товара для личного использования</a>
             </span>
 
-            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/dailyprofit}">Составить ежедневный отчет</a>
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/expired-product}">Продаваемые товары, срок годности меньше 6 месяцев</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/expired-product-personal}">Личные товары, срок годности меньше 6 месяцев</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
                 <a th:href="@{/controlpanel/newuser}">Создать нового пользователя</a>
             </span>
-
 
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
                 <button id="but_exit">Выйти</button>
