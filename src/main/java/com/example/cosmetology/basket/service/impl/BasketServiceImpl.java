@@ -72,4 +72,16 @@ public class BasketServiceImpl implements BasketService {
         session.getTransaction().commit();
     }
 
+    @Override
+    public void storedProcedures() {
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Basket.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+
+        session.getNamedQuery("DeleteFirstTwoItems").executeUpdate();
+
+        session.getTransaction().commit();
+    }
+
 }

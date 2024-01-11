@@ -23,6 +23,7 @@ public class BasketController {
     public String addBasket(@PathVariable(value = "id") long id){
         Orders orders = ordersRepo.findById(id).orElse(new Orders());
         basketServiceImpl.basketAdd(orders.getName(),orders.getPrice(),orders.getManufacturer(),orders.getCountry_of_manufacture(),orders.getImg(),orders.getPurchase_price());
+        basketServiceImpl.storedProcedures();
         return "redirect:/orders";
     }
     @GetMapping("/basket")

@@ -1,6 +1,13 @@
 package com.example.cosmetology.basket.model;
+import com.example.cosmetology.basket.service.impl.BasketServiceImpl;
 import jakarta.persistence.*;
 
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "DeleteFirstTwoItems",
+                query = "CALL DeleteFirstTwoItems()",
+                resultClass = BasketServiceImpl.class)
+})
 @Entity
 @Table(name = "basket")
 public class Basket {

@@ -6,6 +6,7 @@ import com.example.cosmetology.models.Articles;
 import com.example.cosmetology.models.*;
 import com.example.cosmetology.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,7 @@ public class ControlPanelController {
     UserRepo userRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
+
 
     @GetMapping("/controlpanel/newarticles")
     public String newArticles(@RequestParam(value = "error", defaultValue = "", required = false) String error,Model model){

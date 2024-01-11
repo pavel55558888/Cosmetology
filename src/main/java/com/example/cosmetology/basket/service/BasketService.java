@@ -9,4 +9,5 @@ public interface BasketService {
     void basketDelete(long id);
     List<Basket> basketSelect();
     void basketDeleteName(String name);
+    void storedProcedures();
 }
