@@ -2,9 +2,9 @@ package com.example.cosmetology.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,8 +14,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityController {
+@ComponentScan("com.example.cosmetology")
+public class SecurityConfig {
     @Autowired
     DataSource dataSource;
 
@@ -23,10 +23,24 @@ public class SecurityController {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/controlpanel/**","/orders/{id}/update","/orders/{id}/delete",
-//                                "/articles/{}/update","/articles/{id}/delete","/basket","/expired-product-personal","/expired-product").authenticated()
-//                        .requestMatchers("/controlpanel/newarticles").hasRole("DEVELOPER")
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/main.css").permitAll()
+                        .requestMatchers("/","/orders","/login","/login-error","/reg","/orders/*","/articles/*").permitAll()
+
+                        .requestMatchers("/logout").authenticated()
+
+                        .requestMatchers("/basket","/orders/{id}/basket").hasAnyAuthority("USER", "DEVELOPER")
+
+                        .requestMatchers("/controlpanel/newarticles","/controlpanel/newarticles/**",
+                                "/controlpanel/dailyprofit", "/controlpanel/dailyprofit/**",
+                                "/controlpanel/neworder","/controlpanel/neworder/**",
+                                "/controlpanel/neworderpersonal","/controlpanel/neworderdpersonal/**",
+                                "/controlpanel/orderpersonal", "/controlpanel/orderprsonal/**","/controlpanel/orderpersonal/**",
+                                "/articles","/articles/*",
+                                "/","/orders","/orders/*").hasAnyAuthority("DEVELOPER", "ADMIN", "EMPLOYEE")
+
+                        .requestMatchers("/controlpanel/**","/orders/**", "/articles/**","/expired-product-personal",
+                                "/expired-product").hasAnyAuthority("DEVELOPER", "ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
