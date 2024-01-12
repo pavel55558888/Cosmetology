@@ -24,14 +24,17 @@ public class Consumables {
     private String img;
     @Column(name = "in_stock")
     private String in_stock;
+    @Column(name = "current_datee")
+    private String currentDate;
 
-    public Consumables(String name, String purchase_price, String expiration_date, String manufacturer, String img, String in_stock) {
+    public Consumables(String name, String purchase_price, String expiration_date, String manufacturer, String img, String in_stock, String currentDate) {
         this.name = name;
         this.purchase_price = purchase_price;
         this.expiration_date = expiration_date;
         this.manufacturer = manufacturer;
         this.img = img;
         this.in_stock = in_stock;
+        this.currentDate = currentDate;
     }
 
     public Consumables() {
@@ -91,6 +94,14 @@ public class Consumables {
 
     public void setIn_stock(String in_stock) {
         this.in_stock = in_stock;
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
     }
 
     @Override

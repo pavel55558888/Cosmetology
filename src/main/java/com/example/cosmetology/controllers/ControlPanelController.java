@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
@@ -106,10 +107,11 @@ public class ControlPanelController {
             return "redirect:/controlpanel/neworder?error=null";
         } else if (name.length() >= 250 || price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
                 || country_of_manufacture.length() >= 250 || purchase_price.length() >= 250 || purpose_of_use.length() >= 250 || img.length() >= 250
-                || quantity.length() >= 250 || description.length() >= 19000) {
+                || quantity.length() >= 250 || description.length() >= 18000) {
             return "redirect:/controlpanel/neworder?error=max";
         } else{
-            Orders orders = new Orders(name, price,expiration_date,manufacturer,country_of_manufacture,purpose_of_use,img,purchase_price,quantity,description);
+            LocalDate currentDate = LocalDate.now();
+            Orders orders = new Orders(name, price,expiration_date,manufacturer,country_of_manufacture,purpose_of_use,img,purchase_price,quantity,description,currentDate.toString());
             ordersRepo.save(orders);
         }
         return "redirect:/orders";
@@ -180,7 +182,8 @@ public class ControlPanelController {
                 || img.length() >= 250 || in_stock.length() >= 250){
             return "redirect:/controlpanel/neworderpersonal?error=max";
         }
-        Consumables consumables = new Consumables(name,purchase_price,expiration_date,manufacturer,img,in_stock);
+        LocalDate currentDate = LocalDate.now();
+        Consumables consumables = new Consumables(name,purchase_price,expiration_date,manufacturer,img,in_stock,currentDate.toString());
         consumablesRepo.save(consumables);
         return "redirect:/controlpanel/orderpersonal";
     }

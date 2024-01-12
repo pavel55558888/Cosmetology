@@ -29,13 +29,15 @@ public class Orders {
     private String purchase_price;
     @Column(name = "quantity")
     private String quantity;
-    @Column(name = "description", length = 19000)
+    @Column(name = "description",length = 18000)
     private String description;
+    @Column(name = "current_datee")
+    private String currenDate;
 
     public Orders() {
     }
 
-    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description) {
+    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description,String currenDate) {
         this.name = name;
         this.price = price;
         this.expiration_date = expiration_date;
@@ -46,6 +48,7 @@ public class Orders {
         this.purchase_price = purchase_price;
         this.quantity = quantity;
         this.description = description;
+        this.currenDate = currenDate;
     }
 
     public long getId() {
@@ -134,6 +137,14 @@ public class Orders {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCurrenDate() {
+        return currenDate;
+    }
+
+    public void setCurrenDate(String currenDate) {
+        this.currenDate = currenDate;
     }
 
     @Override

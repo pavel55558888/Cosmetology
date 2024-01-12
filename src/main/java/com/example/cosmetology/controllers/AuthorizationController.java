@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class AuthorizationController {
@@ -43,12 +45,14 @@ public class AuthorizationController {
             model.addAttribute("error","Логин слишком легкий!");
         } else if (error.equals("usernameMax")) {
             model.addAttribute("error","Логин слишком длинный!");
-        } else if (error.equals("passwordMin")) {
+        } else if (error.equals("mailMax")) {
+            model.addAttribute("error","Почта слишком длинная!");
+        } else if (error.equals("mail")) {
+            model.addAttribute("error","Неверный формат почты!");
+        }else if (error.equals("passwordMin")) {
             model.addAttribute("error","Пароль слишком легкий!");
         } else if (error.equals("passwordMax")) {
-            model.addAttribute("error","Пароль слишком длинный!");
-        } else if (error.equals("emailMax")) {
-            model.addAttribute("error","Почта слишком длинная!");
+            model.addAttribute("error", "Пароль слишком длинный!");
         }
         return "login/reg";
     }
@@ -57,6 +61,11 @@ public class AuthorizationController {
     public String regAdd(@RequestParam String username,
                          @RequestParam String email,
                          @RequestParam String password){
+
+        String regex = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
         if (userRepo.findByUsername(username) != null) {
             return "redirect:/reg?error=username";
         }else if(password.length()<=5){
@@ -69,7 +78,10 @@ public class AuthorizationController {
             return "redirect:/reg?error=passwordMax";
         } else if(email.length()>=250){
             return "redirect:/reg?error=mailMax";
+        } else if (!matcher.find()) {
+            return "redirect:/reg?error=mail";
         }
+
         password = passwordEncoder.encode(password);
         User user = new User(username, email, password, true, Collections.singleton(Role.USER));
         userRepo.save(user);
