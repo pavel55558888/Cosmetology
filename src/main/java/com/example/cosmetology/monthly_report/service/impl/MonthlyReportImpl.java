@@ -110,7 +110,7 @@ public class MonthlyReportImpl implements MonthlyReportService {
     }
 
     @Override
-    public void insertMothlyReport() {
+    public void insertMonthlyReport() {
         LocalDate currentDate = LocalDate.now();
 
         double netProfit = filterDailyProfit()+filterOrder()+filterOrderPersonal();
@@ -126,5 +126,41 @@ public class MonthlyReportImpl implements MonthlyReportService {
         } finally {
             factory.close();
         }
+    }
+
+    @Override
+    public boolean checkingForTheFirstNumber() {
+        LocalDate currentDate = LocalDate.now();
+        int lastDayOfMonth = currentDate.lengthOfMonth();
+        return currentDate.getDayOfMonth() == lastDayOfMonth;
+    }
+
+    @Override
+    public void selectMonthlyReportСheck() {
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+
+        List<MonthlyReport> list = session.createQuery("from MonthlyReport where date = :date").setParameter("date", LocalDate.now().toString()).getResultList();
+        if (list.isEmpty()) {
+            insertMonthlyReport();
+        }
+
+        session.getTransaction().commit();
+    }
+
+    @Override
+    public List<MonthlyReport> selectMonthlyReport() {
+        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
+
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+
+        List<MonthlyReport> list = session.createQuery("from MonthlyReport").getResultList();
+
+        session.getTransaction().commit();
+
+        return list;
     }
 }

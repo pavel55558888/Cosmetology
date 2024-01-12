@@ -4,6 +4,7 @@ import com.example.cosmetology.models.AboutTheSalon;
 import com.example.cosmetology.models.AddressOfTheSalon;
 import com.example.cosmetology.models.Articles;
 import com.example.cosmetology.models.*;
+import com.example.cosmetology.monthly_report.service.impl.MonthlyReportImpl;
 import com.example.cosmetology.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -205,6 +206,11 @@ public class ControlPanelController {
             model.addAttribute("error", "Заполните все поля!");
         } else if(error.equals("max")) {
             model.addAttribute("error", "Какое-то из полей слишком длинное");
+        }
+
+        MonthlyReportImpl monthlyReport = new MonthlyReportImpl();
+        if (monthlyReport.checkingForTheFirstNumber()){
+            monthlyReport.selectMonthlyReportСheck();
         }
         return "daily-profit/report";
     }

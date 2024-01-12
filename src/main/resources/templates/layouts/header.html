@@ -51,6 +51,10 @@
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/monthly-report}">Ежемесячный отчет</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
                 <a th:href="@{/controlpanel/newuser}">Создать нового пользователя</a>
             </span>
 

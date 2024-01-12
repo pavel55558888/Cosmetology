@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 "/","/orders","/orders/*").hasAnyAuthority("DEVELOPER", "ADMIN", "EMPLOYEE")
 
                         .requestMatchers("/controlpanel/**","/orders/**", "/articles/**","/expired-product-personal",
-                                "/expired-product").hasAnyAuthority("DEVELOPER", "ADMIN")
+                                "/expired-product","/monthly-report").hasAnyAuthority("DEVELOPER", "ADMIN")
 
                         .anyRequest().authenticated()
                 )
