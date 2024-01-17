@@ -28,7 +28,7 @@ public class SecurityConfig {
 
                         .requestMatchers("/logout").authenticated()
 
-                        .requestMatchers("/basket","/orders/{id}/basket").hasAnyAuthority("USER", "DEVELOPER")
+                        .requestMatchers("/basket","/orders/{id}/basket","/mail","/send-email").hasAnyAuthority("USER", "DEVELOPER")
 
                         .requestMatchers("/controlpanel/newarticles","/controlpanel/newarticles/**",
                                 "/controlpanel/dailyprofit", "/controlpanel/dailyprofit/**",

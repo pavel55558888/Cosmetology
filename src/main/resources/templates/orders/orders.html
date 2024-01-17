@@ -18,6 +18,10 @@
             <h3 th:text="${el.name}"/>
             <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
             <h4 th:text="${el.manufacturer}"/>
+
+            <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER') || hasAuthority('USER')">
+                <button>🛒</button>
+            </form>
         </div>
     </div>
 
@@ -27,6 +31,10 @@
             <h3 th:text="${el.name}"/>
             <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
             <h4 th:text="${el.manufacturer}"/>
+
+            <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER') || hasAuthority('USER')">
+                <button>🛒</button>
+            </form>
         </div>
     </div>
 </main>

@@ -63,4 +63,10 @@
             </form>
         </div>
     </div>
+
+    <div class="fixed-button-container" sec:authorize="hasAnyAuthority('USER','DEVELOPER') || !isAuthenticated()">
+        <form th:action="@{/mail}">
+            <button class="fixed-button" id="myButton">Заявка на запись</button>
+        </form>
+    </div>
 </header>

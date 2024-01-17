@@ -20,8 +20,7 @@
     </div>
 
     <div id = "history" th:each="el : ${aboutTheSalon}">
-        <h2 class="history_index">Сфера деятельности</h2>
-        <h4 class="history_index" th:text="${el.activity}"/>
+        <h1 class="history_index" th:text="${el.activity}"/>
         <br>
         <br>
         <h2 class="history_index">История салона</h2>

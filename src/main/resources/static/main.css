@@ -143,7 +143,7 @@ form > button{
     padding: 10px 10px;
     border: 1px solid black;
     border-radius: 30px;
-    background-color: #b3ddff;
+    background-color: #BDF5FE;
     display: block;
 }
 form > button:hover{
@@ -364,6 +364,33 @@ form > h4{
 #monthly-report > h1,h2,h3{
     margin-bottom: 10px;
 }
+
+.buy_btn > button{
+    border: none;
+    margin: 0px;
+    padding: 5px 10px;
+    font-size: 30px;
+}
+
+.fixed-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.fixed-button {
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {background-color: #BDF5FE;}
+    50% {background-color: #7eeeff;}
+    100% {background-color: #BDF5FE;}
+}
+
 
 
 
