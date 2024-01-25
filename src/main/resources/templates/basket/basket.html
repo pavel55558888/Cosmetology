@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Reflection</title>
+    <title>Корзина</title>
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
@@ -11,6 +11,11 @@
 
 <main class="container">
     <h1 class="basket">Корзина</h1>
+
+    <form th:action="@{/basket/clear}" method="post">
+        <button id="but_exit">Очистить корзину</button>
+    </form>
+
     <div class = "div_basket">
         <div th:each="el : ${list}" id="div_orders">
             <img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено">

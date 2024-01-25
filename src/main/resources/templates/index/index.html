@@ -2,7 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Reflection</title>
+    <title>Отражение</title>
+    <link rel="icon" href="/image/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
+
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
@@ -24,11 +27,11 @@
         <br>
         <br>
         <h2 class="history_index">История салона</h2>
-        <h4 class="history_index" th:text="${el.history}"/>
+        <h3 class="history_index" th:text="${el.history}"/>
         <br>
         <br>
         <h2 class="history_index">Наши услуги</h2>
-        <h4 class="history_index" th:text="${el.procedures}"/>
+        <h3 class="history_index" th:text="${el.procedures}"/>
     </div>
 
     <hr class="hr_index">

@@ -3,8 +3,6 @@ package com.example.cosmetology.controllers;
 import com.example.cosmetology.models.Role;
 import com.example.cosmetology.models.User;
 import com.example.cosmetology.repository.UserRepo;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -53,6 +51,8 @@ public class AuthorizationController {
             model.addAttribute("error","Пароль слишком легкий!");
         } else if (error.equals("passwordMax")) {
             model.addAttribute("error", "Пароль слишком длинный!");
+        } else if (error.equals("agreement")) {
+            model.addAttribute("error", "Необходимо согласие на обработку данных");
         }
         return "login/reg";
     }
@@ -60,8 +60,8 @@ public class AuthorizationController {
     @PostMapping("/reg/add")
     public String regAdd(@RequestParam String username,
                          @RequestParam String email,
-                         @RequestParam String password){
-
+                         @RequestParam String password,
+                         @RequestParam(value = "agreement", required = false) String agreement){
         String regex = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
@@ -80,6 +80,8 @@ public class AuthorizationController {
             return "redirect:/reg?error=mailMax";
         } else if (!matcher.find()) {
             return "redirect:/reg?error=mail";
+        } else if (agreement == null) {
+        return "redirect:/reg?error=agreement";
         }
 
         password = passwordEncoder.encode(password);

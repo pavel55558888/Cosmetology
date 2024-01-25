@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Reflection</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
@@ -16,6 +16,10 @@
         <input type="text" name="username" placeholder="Введите логин">
         <input type="email" name="email" placeholder="Введите e-mail">
         <input type="password" name="password" placeholder="Введите пароль">
+        <label for="agreement" style="display: flex; align-items: center;">
+            <input type="checkbox" id="agreement" name="agreement" value="yes" style="margin-right: 15px;">
+            <a th:href="@{/lol}">Согласен на обработку персональных данных</a>
+        </label>
 
         <h3 th:text="${error}" style="color: red"/>
 

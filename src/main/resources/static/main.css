@@ -38,7 +38,10 @@ header.container{
     margin: 0 auto;
 }
 
-header .logo a{
+header .logo a {
+    position: relative;
+    top: -10px;
+    left: -10px;
     color: #000000;
     font-weight: 600;
     font-size: 25px;
@@ -76,6 +79,7 @@ footer{
 
 .history_index{
     text-align: center;
+    white-space: pre-line;
 }
 
 #history{
@@ -114,6 +118,7 @@ footer{
 
 .full_order{
     text-align: center;
+    white-space: pre-line;
 }
 
 #full_order_img{
@@ -136,6 +141,7 @@ footer{
     margin:0 10% 0 10%;
     width:80%;
     text-align: center;
+    white-space: pre-line;
 }
 
 form > button{
@@ -389,6 +395,56 @@ form > h4{
     0% {background-color: #BDF5FE;}
     50% {background-color: #7eeeff;}
     100% {background-color: #BDF5FE;}
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 15px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container > input{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: -3%;
+}
+.search-container > button{
+    width: 10%;
+    margin-right: 10%;
+    margin-left: -3%;
+    height: 47px;
+}
+
+.centered-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.custom-alert {
+    background-color: #BDF5FE;
+    padding: 15px;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    border-radius: 10px;
+    border: 0px solid;
+    box-shadow: 0 0 10px #444;
+}
+
+.custom-alert.hidden {
+    opacity: 0;
+}
+
+.title{
+    font-family: 'Diplomata SC', serif;
+}
+#img_logo{
+    width: 35px;
 }
 
 

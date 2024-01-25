@@ -10,4 +10,5 @@ public interface BasketService {
     List<Basket> basketSelect();
     void basketDeleteName(String name);
     void storedProcedures();
+    void clearBasket();
 }

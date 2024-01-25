@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Записи</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+  <h1 class="basket">Список записей</h1>
+  <br>
+  <div th:each="el : ${calendarDate}">
+    <div id="monthly-report">
+      <h1 th:text="${el.firstname} + ' ' + ${el.name} + ' ' + ${el.lastname}"/>
+      <h3 th:text="'Дата: ' + ${el.date}"/>
+      <h3 th:text="'Время: ' + ${el.time}"/>
+      <h3 th:text="'Номер для связи: ' + ${el.number}"/>
+
+      <form th:action="@{'/calendar/delete/' + ${el.id}}" id="form" method="post">
+        <button>Удалить</button>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.example.cosmetology.expired_product.service;
 
 import com.example.cosmetology.models.Consumables;
-import com.example.cosmetology.models.Orders;
+import com.example.cosmetology.orders.model.Orders;
 
 import java.util.List;
 

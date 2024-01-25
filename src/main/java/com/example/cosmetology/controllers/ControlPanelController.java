@@ -5,9 +5,9 @@ import com.example.cosmetology.models.AddressOfTheSalon;
 import com.example.cosmetology.models.Articles;
 import com.example.cosmetology.models.*;
 import com.example.cosmetology.monthly_report.service.impl.MonthlyReportImpl;
+import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -207,11 +207,6 @@ public class ControlPanelController {
         } else if(error.equals("max")) {
             model.addAttribute("error", "Какое-то из полей слишком длинное");
         }
-
-        MonthlyReportImpl monthlyReport = new MonthlyReportImpl();
-        if (monthlyReport.checkingForTheFirstNumber()){
-            monthlyReport.selectMonthlyReportСheck();
-        }
         return "daily-profit/report";
     }
 
@@ -226,6 +221,11 @@ public class ControlPanelController {
         } else {
             DailyProfit dailyProfit = new DailyProfit(date, services, profit);
             dailyProfitRepo.save(dailyProfit);
+
+            MonthlyReportImpl monthlyReport = new MonthlyReportImpl();
+            if (monthlyReport.checkingForTheFirstNumber()){
+                monthlyReport.selectMonthlyReportСheck();
+            }
         }
         return "redirect:/";
     }

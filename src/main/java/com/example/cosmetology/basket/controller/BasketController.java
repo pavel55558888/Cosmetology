@@ -1,20 +1,16 @@
 package com.example.cosmetology.basket.controller;
 
 import com.example.cosmetology.basket.model.Basket;
-import com.example.cosmetology.basket.service.BasketService;
 import com.example.cosmetology.basket.service.impl.BasketServiceImpl;
-import com.example.cosmetology.models.Orders;
+import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.repository.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BasketController {
@@ -22,10 +18,13 @@ public class BasketController {
     OrdersRepo ordersRepo;
     private BasketServiceImpl basketServiceImpl = new BasketServiceImpl();
     @PostMapping("/orders/{id}/basket")
-    public String addBasket(@PathVariable(value = "id") long id){
+    public String addBasket(@PathVariable(value = "id") long id, RedirectAttributes redirectAttributes){
         Orders orders = ordersRepo.findById(id).orElse(new Orders());
         basketServiceImpl.basketAdd(orders.getName(),orders.getPrice(),orders.getManufacturer(),orders.getCountry_of_manufacture(),orders.getImg(),orders.getPurchase_price());
         basketServiceImpl.storedProcedures();
+
+        redirectAttributes.addFlashAttribute("successMessage", "Товар успешно добавлен в корзину!");
+
         return "redirect:/orders";
     }
     @GetMapping("/basket")
@@ -44,6 +43,13 @@ public class BasketController {
     public String basketDelete(@PathVariable(value = "id") long id){
         BasketServiceImpl basketServiceImpl = new BasketServiceImpl();
         basketServiceImpl.basketDelete(id);
+        return "redirect:/basket";
+    }
+
+    @PostMapping("/basket/clear")
+    public String basketClear(){
+        BasketServiceImpl basketServiceImpl = new BasketServiceImpl();
+        basketServiceImpl.clearBasket();
         return "redirect:/basket";
     }
 

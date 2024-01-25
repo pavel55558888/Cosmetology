@@ -1,7 +1,7 @@
-package com.example.cosmetology.controllers;
+package com.example.cosmetology.orders.controller;
 
 import com.example.cosmetology.basket.service.impl.BasketServiceImpl;
-import com.example.cosmetology.models.Orders;
+import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.repository.OrdersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,17 @@ import java.util.*;
 public class OrdersController {
     @Autowired
     OrdersRepo ordersRepo;
+    private List<Orders> orders;
+    private List<Orders> ordersSorted;
+    private List<Orders> searchResults;
 
     @GetMapping("/orders")
     public String orders(Model model){
-        List<Orders> orders = ordersRepo.findAll();
+        orders = ordersRepo.findAll();
         Collections.reverse(orders);
         model.addAttribute("ordersAdmin", orders);
         Set<Orders> UniqueSortingOrders = new HashSet<>(orders);
-        List<Orders> ordersSorted = new ArrayList<>(UniqueSortingOrders);
+        ordersSorted = new ArrayList<>(UniqueSortingOrders);
         model.addAttribute("ordersUser", ordersSorted);
         return "orders/orders";
     }
@@ -91,5 +94,66 @@ public class OrdersController {
             ordersRepo.save(orders);
         }
         return "redirect:/orders";
+    }
+
+    @PostMapping("/orders/search/user")
+    public String ordersSearchUser(@RequestParam String search){
+        searchResults = searchObjects(ordersSorted, search);
+
+        // Выводим результаты поиска
+        System.out.println("Результаты поиска:");
+        for (Orders result : searchResults) {
+            System.out.println("Найден товар: " + result.getName());
+        }
+        return "redirect:/orders/search/user";
+    }
+
+    @PostMapping("/orders/search/admin")
+    public String ordersSearchAdmin(@RequestParam String search){
+        searchResults = searchObjects(ordersSorted, search);
+
+        return "redirect:/orders/search/admin";
+    }
+    @GetMapping("/orders/search/admin")
+    public String ordersSearchAdmin(Model model){
+        model.addAttribute("ordersAdmin", searchResults);
+        return "orders/orders";
+    }
+    @GetMapping("/orders/search/user")
+    public String ordersSearchUser(Model model){
+        model.addAttribute("ordersUser", searchResults);
+        return "orders/orders";
+    }
+
+    private static List<Orders> searchObjects(List<Orders> ordersList, String userQuery) {
+        List<Orders> searchResults = new ArrayList<>();
+
+        for (Orders order : ordersList) {
+            String name = order.getName();
+            String purposeOfUse = order.getPurpose_of_use();
+            String manufacturer = order.getManufacturer();
+
+            List<String> fieldsToSearch = Arrays.asList(name, purposeOfUse, manufacturer);
+
+            String[] userQueryWords = userQuery.toLowerCase().split("\\s+");
+
+            for (String field : fieldsToSearch) {
+                if (field != null && containsAnyWord(field.toLowerCase(), userQueryWords)) {
+                    searchResults.add(order);
+                    break;
+                }
+            }
+        }
+
+        return searchResults;
+    }
+
+    private static boolean containsAnyWord(String haystack, String[] needles) {
+        for (String needle : needles) {
+            if (haystack.contains(needle)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

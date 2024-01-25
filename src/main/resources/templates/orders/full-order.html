@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <title>Reflection</title>
+  <title>Товар</title>
   <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
@@ -31,13 +31,13 @@
   <h3 class="full_order" th:text="'Цена: ' + ${order.price}"/>
   <h4 class="full_order" th:text="'Производитель: ' + ${order.manufacturer}"/>
   <h4 class="full_order" th:text="'Произведено в: ' + ${order.country_of_manufacture}"/>
-  <h2 class="full_order" th:text="'Используется для ' + ${order.purpose_of_use}"/>
   <br>
-  <h4 class="full_order" th:text="${order.description}"/>
+  <h2 class="full_order" th:text="${order.description}"/>
   <hr class="hr_index" id="hr" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
   <h3 class="full_order" th:text="'Годен до: ' + ${order.expiration_date}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
   <h3 class="full_order" th:text="'Закупочная цена: ' + ${order.purchase_price}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
   <h3 class="full_order" th:text="'В наличие: ' + ${order.quantity}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
+  <h3 class="full_order" th:text="'Ключевое слово: ' + ${order.purpose_of_use}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
 
 
 

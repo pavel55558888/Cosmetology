@@ -1,5 +1,10 @@
 <header class="container" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
-    <span class="logo"><a href="/">REFLECTION</a></span>
+    <script src="main.js"></script>
+    <span class="logo">
+        <img id="img_logo" src="/image/logo2.jpg">
+        <a href="/">ТРАЖЕНИЕ</a>
+    </span>
+    <meta property="og:image" content="/image/logo.jpg">
     <nav>
 
     </nav>
@@ -10,6 +15,18 @@
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
                 <a th:href="@{/controlpanel/dailyprofit}">Составить ежедневный отчет</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/calendar/add}">Записать клиента</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/calendar/date}">Поиск записей по дате</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/calendar/name}">Поиск записей по имени</a>
             </span>
 
             <a th:href="@{/orders}">Товары</a>

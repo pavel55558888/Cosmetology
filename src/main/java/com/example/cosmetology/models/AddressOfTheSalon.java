@@ -46,5 +46,4 @@ public class AddressOfTheSalon {
     public void setImg(String img) {
         this.img = img;
     }
-
 }

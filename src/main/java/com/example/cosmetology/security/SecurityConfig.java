@@ -23,8 +23,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/","/orders","/login","/login-error","/reg","/reg/**","/orders/*","/articles/*").permitAll()
-                        .requestMatchers("/main.css").permitAll()
+                        .requestMatchers("/","/orders","/login","/login-error","/reg","/reg/**","/orders/*",
+                                "/articles/*", "/orders/search/user").permitAll()
+                        .requestMatchers("/main.css", "/main.js","/image/**").permitAll()
 
                         .requestMatchers("/logout").authenticated()
 
@@ -36,7 +37,7 @@ public class SecurityConfig {
                                 "/controlpanel/neworderpersonal","/controlpanel/neworderdpersonal/**",
                                 "/controlpanel/orderpersonal", "/controlpanel/orderprsonal/**","/controlpanel/orderpersonal/**",
                                 "/articles","/articles/*",
-                                "/","/orders","/orders/*").hasAnyAuthority("DEVELOPER", "ADMIN", "EMPLOYEE")
+                                "/","/orders","/orders/*","/calendar/add","/calendar/**","/orders/search/**").hasAnyAuthority("DEVELOPER", "ADMIN", "EMPLOYEE")
 
                         .requestMatchers("/controlpanel/**","/orders/**", "/articles/**","/expired-product-personal",
                                 "/expired-product","/monthly-report").hasAnyAuthority("DEVELOPER", "ADMIN")

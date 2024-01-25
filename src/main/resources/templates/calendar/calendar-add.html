@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая запись</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+    <form th:action="@{/calendar/add}" method="post" id="form">
+        <h1>Запись клиента</h1>
+        <input type="text" placeholder="Введите фамилию" name="firstname">
+        <input type="text" placeholder="Введите имя" name="name">
+        <input type="text" placeholder="Введите отчество" name="lastname">
+        <input type="number" placeholder="Введите номер телефона" name="number">
+        <input type="date" placeholder="Введите дату" name="date">
+        <input type="time" placeholder="Введите время" name="time">
+
+        <h3 th:text="${error}" style="color: red"/>
+
+        <button>Добавить</button>
+    </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

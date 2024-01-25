@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Поиск по имени</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+  <form th:action="@{/calendar/name}" method="post" id="form">
+    <h1>Поиск записей по имени</h1>
+    <input type="text" placeholder="Введите фамилию" name="firstname">
+    <input type="text" placeholder="Введите имя" name="name">
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Искать</button>
+  </form>
+
+</main>
+
+<div th:replace="layouts/footer :: footer"></div>
+
+</body>
+</html>

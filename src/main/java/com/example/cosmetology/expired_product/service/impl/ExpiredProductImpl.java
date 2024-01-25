@@ -2,7 +2,7 @@ package com.example.cosmetology.expired_product.service.impl;
 
 import com.example.cosmetology.expired_product.service.ExpiredProduct;
 import com.example.cosmetology.models.Consumables;
-import com.example.cosmetology.models.Orders;
+import com.example.cosmetology.orders.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
