@@ -17,6 +17,8 @@ import java.util.List;
 public class CalendarController {
     private CalendarServiceImpl calendarService = new CalendarServiceImpl();
     private List<Calendar> calendarDate = new ArrayList<>();
+    private List<Calendar> nextDay = new ArrayList<>();
+    private List<Calendar> previousDay = new ArrayList<>();
     @GetMapping("/calendar/add")
     public String calendarAdd(@RequestParam(value = "error",defaultValue = "",required = false) String error, Model model){
         if (error.equals("min")){
@@ -25,7 +27,7 @@ public class CalendarController {
         return "calendar/calendar-add";
     }
     @PostMapping("/calendar/add")
-    public String calendarAddPost(@RequestParam String firstname,
+    public String calendarAdd(@RequestParam String firstname,
                                   @RequestParam String name,
                                   @RequestParam String lastname,
                                   @RequestParam String number,
@@ -89,5 +91,31 @@ public class CalendarController {
     public String calendarDelete(@PathVariable(value = "id") long id){
         calendarService.calendarDelete(id);
         return "redirect:/";
+    }
+
+   @PostMapping("/calendar/next/{date}")
+    public String calendarNext(@PathVariable(value = "date") String date, Model model){
+       nextDay = calendarService.nextDate(date);
+       return "redirect:/calendar/next";
+   }
+
+   @GetMapping("/calendar/next")
+    public String calendarNext(Model model){
+       Collections.sort(nextDay);
+       model.addAttribute("calendarDate", nextDay);
+       return "calendar/calendar";
+   }
+
+    @PostMapping("/calendar/back/{date}")
+    public String calendarBack(@PathVariable(value = "date") String date, Model model){
+        previousDay = calendarService.backDate(date);
+        return "redirect:/calendar/back";
+    }
+
+    @GetMapping("/calendar/back")
+    public String calendarBack(Model model){
+        Collections.sort(previousDay);
+        model.addAttribute("calendarDate", previousDay);
+        return "calendar/calendar";
     }
 }

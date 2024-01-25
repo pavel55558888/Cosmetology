@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -37,6 +38,9 @@ public class CalendarServiceImpl implements CalendarService {
             factory.close();
         }
 
+        if (list.isEmpty()){
+            list.add(new Calendar("Записей нет","","","",date,""));
+        }
         return list;
     }
 
@@ -68,5 +72,25 @@ public class CalendarServiceImpl implements CalendarService {
         } finally {
             factory.close();
         }
+    }
+
+    @Override
+    public List<Calendar> nextDate(String date) {
+        LocalDate today = LocalDate.parse(date);
+
+        LocalDate tomorrow = today.plusDays(1);
+
+        List<Calendar> nextDay = caledarSelectDate(String.valueOf(tomorrow));
+        return nextDay;
+    }
+
+    @Override
+    public List<Calendar> backDate(String date) {
+        LocalDate today = LocalDate.parse(date);
+
+        LocalDate yesterday = today.minusDays(1);
+
+        List<Calendar> previousDay = caledarSelectDate(String.valueOf(yesterday));
+        return previousDay;
     }
 }

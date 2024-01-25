@@ -447,6 +447,20 @@ input[type="checkbox"] {
     width: 35px;
 }
 
+#calendar_btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+#but_add_calendar > button{
+    font-size: 50px;
+    width: 100px;
+}
+#but_add_calendar {
+    display: flex;
+    justify-content: center;
+}
+
 
 
 

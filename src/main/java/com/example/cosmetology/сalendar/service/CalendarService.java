@@ -9,4 +9,7 @@ public interface CalendarService {
     List<Calendar> caledarSelectDate(String date);
     List<Calendar> caledarSelectName(String firstname, String name);
     void calendarDelete(long id);
+
+    List<Calendar> nextDate(String date);
+    List<Calendar> backDate(String date);
 }

@@ -11,7 +11,19 @@
 
 <main class="container">
   <h1 class="basket">Список записей</h1>
+
+  <div id="calendar_btn">
+    <form th:action="@{'/calendar/back/' + ${calendarDate.getFirst().getDate()}}" method="post">
+      <button>Назад</button>
+    </form>
+
+    <form th:action="@{'/calendar/next/' + ${calendarDate.getFirst().getDate()}}" method="post">
+      <button>Далее</button>
+    </form>
+  </div>
+
   <br>
+
   <div th:each="el : ${calendarDate}">
     <div id="monthly-report">
       <h1 th:text="${el.firstname} + ' ' + ${el.name} + ' ' + ${el.lastname}"/>
@@ -24,6 +36,10 @@
       </form>
     </div>
   </div>
+
+  <form id="but_add_calendar" th:action="@{/calendar/add}">
+    <button>+</button>
+  </form>
 
 </main>
 
