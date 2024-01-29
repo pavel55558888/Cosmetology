@@ -1,9 +1,9 @@
-package com.example.cosmetology.controllers;
+package com.example.cosmetology.Index.Controller;
 
 import com.example.cosmetology.expired_product.service.impl.ExpiredProductImpl;
-import com.example.cosmetology.models.AboutTheSalon;
-import com.example.cosmetology.models.AddressOfTheSalon;
-import com.example.cosmetology.models.Articles;
+import com.example.cosmetology.Index.Model.AboutTheSalon;
+import com.example.cosmetology.Index.Model.AddressOfTheSalon;
+import com.example.cosmetology.Index.Model.Articles;
 import com.example.cosmetology.repository.AboutTheSalonRepo;
 import com.example.cosmetology.repository.AddressOfTheSalonRepo;
 import com.example.cosmetology.repository.ArticlesRepo;

@@ -1,7 +1,7 @@
 package com.example.cosmetology.expired_product.controller;
 
 import com.example.cosmetology.expired_product.service.impl.ExpiredProductImpl;
-import com.example.cosmetology.models.Consumables;
+import com.example.cosmetology.orderspersonal.model.Consumables;
 import com.example.cosmetology.orders.model.Orders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

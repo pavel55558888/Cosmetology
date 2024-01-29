@@ -1,7 +1,7 @@
 package com.example.cosmetology.expired_product.service.impl;
 
 import com.example.cosmetology.expired_product.service.ExpiredProduct;
-import com.example.cosmetology.models.Consumables;
+import com.example.cosmetology.orderspersonal.model.Consumables;
 import com.example.cosmetology.orders.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,13 +14,18 @@ public class ExpiredProductImpl implements ExpiredProduct {
 
     @Override
     public List<Orders> SelectOrders() {
+        List<Orders> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Orders.class).buildSessionFactory();
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        List<Orders> list = session.createQuery("from Orders").getResultList();
-        session.getTransaction().commit();
-
+            list = session.createQuery("from Orders").getResultList();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
         List<Orders> listFilter = list.stream()
                 .filter(obj -> {
@@ -34,13 +39,18 @@ public class ExpiredProductImpl implements ExpiredProduct {
 
     @Override
     public List<Consumables> SelectPersonalOrders() {
+        List<Consumables> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Consumables.class).buildSessionFactory();
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        List<Consumables> list = session.createQuery("from Consumables").getResultList();
-        session.getTransaction().commit();
-
+            list = session.createQuery("from Consumables").getResultList();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
         List<Consumables> listFilter = list.stream()
                 .filter(obj -> {

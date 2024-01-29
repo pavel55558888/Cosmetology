@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 <main class="container">
 
@@ -19,12 +19,13 @@
       <h3 th:text="${el.name}"/>
       <h4 th:text="'Производитель: ' + ${el.manufacturer}"/>
       <h4 th:text="'В наличие: ' + ${el.in_stock}" />
+      <h3 th:text="${el.expiration_date}" style="color: orange"/>
     </div>
   </div>
 
 </main>
 
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 
 </body>
 </html>

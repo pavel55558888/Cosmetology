@@ -1,4 +1,4 @@
-package com.example.cosmetology.models;
+package com.example.cosmetology.Index.Model;
 
 import jakarta.persistence.*;
 

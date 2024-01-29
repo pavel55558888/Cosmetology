@@ -1,7 +1,6 @@
-package com.example.cosmetology.models;
+package com.example.cosmetology.orderspersonal.model;
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Objects;
 

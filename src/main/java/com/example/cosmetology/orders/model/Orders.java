@@ -158,4 +158,22 @@ public class Orders {
     public int hashCode() {
         return Objects.hash(getName(), getImg());
     }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", expiration_date='" + expiration_date + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", country_of_manufacture='" + country_of_manufacture + '\'' +
+                ", purpose_of_use='" + purpose_of_use + '\'' +
+                ", img='" + img + '\'' +
+                ", purchase_price='" + purchase_price + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", description='" + description + '\'' +
+                ", currenDate='" + currenDate + '\'' +
+                '}';
+    }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 <main class="container">
 
@@ -18,7 +18,7 @@
         <input type="password" name="password" placeholder="Введите пароль">
         <label for="agreement" style="display: flex; align-items: center;">
             <input type="checkbox" id="agreement" name="agreement" value="yes" style="margin-right: 15px;">
-            <a th:href="@{/lol}">Согласен на обработку персональных данных</a>
+            <a href="">Согласен на обработку персональных данных</a>
         </label>
 
         <h3 th:text="${error}" style="color: red"/>
@@ -28,7 +28,7 @@
 
 </main>
 
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 
 </body>
 </html>

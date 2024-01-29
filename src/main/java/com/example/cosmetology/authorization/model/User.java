@@ -1,4 +1,4 @@
-package com.example.cosmetology.models;
+package com.example.cosmetology.authorization.model;
 
 import jakarta.persistence.*;
 
@@ -30,6 +30,13 @@ public class User {
         this.roles = roles;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

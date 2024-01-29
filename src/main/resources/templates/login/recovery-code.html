@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Подтверждение кода</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+  <form id="form" th:action="@{/recovery/code}" method="post">
+    <h1>Подтвердите код отпарвленный на почту</h1>
+    <input placeholder="Введите код" type="text" name="code">
+    <button>Подтвердить</button>
+
+    <h1 th:text="${error}" style="color: red"/>
+  </form>
+
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

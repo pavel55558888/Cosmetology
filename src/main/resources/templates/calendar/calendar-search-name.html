@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 <main class="container">
   <form th:action="@{/calendar/name}" method="post" id="form">
@@ -22,7 +22,7 @@
 
 </main>
 
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 
 </body>
 </html>

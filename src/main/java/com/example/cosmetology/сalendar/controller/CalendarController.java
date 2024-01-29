@@ -94,7 +94,7 @@ public class CalendarController {
     }
 
    @PostMapping("/calendar/next/{date}")
-    public String calendarNext(@PathVariable(value = "date") String date, Model model){
+    public String calendarNext(@PathVariable(value = "date") String date){
        nextDay = calendarService.nextDate(date);
        return "redirect:/calendar/next";
    }
@@ -107,7 +107,7 @@ public class CalendarController {
    }
 
     @PostMapping("/calendar/back/{date}")
-    public String calendarBack(@PathVariable(value = "date") String date, Model model){
+    public String calendarBack(@PathVariable(value = "date") String date){
         previousDay = calendarService.backDate(date);
         return "redirect:/calendar/back";
     }

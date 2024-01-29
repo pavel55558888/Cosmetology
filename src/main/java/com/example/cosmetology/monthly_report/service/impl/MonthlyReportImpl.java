@@ -1,7 +1,7 @@
 package com.example.cosmetology.monthly_report.service.impl;
 
-import com.example.cosmetology.models.Consumables;
-import com.example.cosmetology.models.DailyProfit;
+import com.example.cosmetology.orderspersonal.model.Consumables;
+import com.example.cosmetology.controlpanel.model.DailyProfit;
 import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.monthly_report.model.MonthlyReport;
 import com.example.cosmetology.monthly_report.service.MonthlyReportService;
@@ -17,38 +17,55 @@ import java.util.List;
 public class MonthlyReportImpl implements MonthlyReportService {
     @Override
     public List<Orders> selectOrders() {
+        List<Orders> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Orders.class).buildSessionFactory();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+            list = session.createQuery("from Orders").getResultList();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
-        List<Orders> list = session.createQuery("from Orders").getResultList();
-        session.getTransaction().commit();
         return list;
     }
 
     @Override
     public List<Consumables> selectPersonOrders() {
+        List<Consumables> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Consumables.class).buildSessionFactory();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-
-        List<Consumables> list = session.createQuery("from Consumables").getResultList();
-        session.getTransaction().commit();
+            list = session.createQuery("from Consumables").getResultList();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
         return list;
     }
 
     @Override
     public List<DailyProfit> selectDailyProfit() {
+        List<DailyProfit> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(DailyProfit.class).buildSessionFactory();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+            list = session.createQuery("from DailyProfit").getResultList();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
-        List<DailyProfit> list = session.createQuery("from DailyProfit").getResultList();
-        session.getTransaction().commit();
         return list;
     }
 
@@ -115,7 +132,6 @@ public class MonthlyReportImpl implements MonthlyReportService {
 
         double netProfit = filterDailyProfit()+filterOrder()+filterOrderPersonal();
 
-
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
@@ -138,28 +154,35 @@ public class MonthlyReportImpl implements MonthlyReportService {
     @Override
     public void selectMonthlyReportСheck() {
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-
-        List<MonthlyReport> list = session.createQuery("from MonthlyReport where date = :date").setParameter("date", LocalDate.now().toString()).getResultList();
-        if (list.isEmpty()) {
-            insertMonthlyReport();
+            List<MonthlyReport> list = session.createQuery("from MonthlyReport where date = :date").setParameter("date", LocalDate.now().toString()).getResultList();
+            if (list.isEmpty()) {
+                insertMonthlyReport();
+            }
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
         }
-
-        session.getTransaction().commit();
     }
 
     @Override
     public List<MonthlyReport> selectMonthlyReport() {
+        List<MonthlyReport> list;
+
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
+        try {
+            Session session = factory.getCurrentSession();
+            session.beginTransaction();
 
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
+            list = session.createQuery("from MonthlyReport").getResultList();
 
-        List<MonthlyReport> list = session.createQuery("from MonthlyReport").getResultList();
-
-        session.getTransaction().commit();
+            session.getTransaction().commit();
+        }finally {
+            factory.close();
+        }
 
         return list;
     }

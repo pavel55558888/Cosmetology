@@ -1,9 +1,12 @@
-package com.example.cosmetology.controllers;
+package com.example.cosmetology.controlpanel.controller;
 
-import com.example.cosmetology.models.AboutTheSalon;
-import com.example.cosmetology.models.AddressOfTheSalon;
-import com.example.cosmetology.models.Articles;
-import com.example.cosmetology.models.*;
+import com.example.cosmetology.authorization.model.Role;
+import com.example.cosmetology.authorization.model.User;
+import com.example.cosmetology.Index.Model.AboutTheSalon;
+import com.example.cosmetology.Index.Model.AddressOfTheSalon;
+import com.example.cosmetology.Index.Model.Articles;
+import com.example.cosmetology.controlpanel.model.DailyProfit;
+import com.example.cosmetology.orderspersonal.model.Consumables;
 import com.example.cosmetology.monthly_report.service.impl.MonthlyReportImpl;
 import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.repository.*;
