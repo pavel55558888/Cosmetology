@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Ошибка</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+  <h1 class="basket" th:text="'Статус ошибки   ' + ${error}"/>
+  <br><br><br><br><br>
+  <h3 class="basket">Ой-ой! Ваш запрос улетел в космос и застрял на Луне!</h3>
+  <br>
+  <h3 class="basket">Похоже, у нашего сервера не хватило топлива, чтобы долететь до него.</h3>
+  <br><br><br>
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

@@ -10,17 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-@SessionAttributes({"searchResultsUser", "searchResultsAdmin"})
 @Controller
 public class OrdersController {
     @Autowired
     OrdersRepo ordersRepo;
     private List<Orders> orders;
     private List<Orders> ordersSorted;
-//    private List<Orders> searchResults;
+    private List<Orders> searchResults;
 
     @GetMapping("/orders")
-    public String orders(Model model, HttpSession httpSession){
+    public String orders(Model model){
         orders = ordersRepo.findAll();
         Collections.reverse(orders);
         model.addAttribute("ordersAdmin", orders);
@@ -95,34 +94,25 @@ public class OrdersController {
     }
 
     @PostMapping("/orders/search/user")
-    public String ordersSearchUser(@RequestParam String search, HttpSession httpSession){
-        List<Orders> searchResultsUser = searchObjects(ordersSorted, search);
-        System.out.println(searchResultsUser);
-        httpSession.setAttribute("searchResultsUser", searchResultsUser);
-        System.out.println(httpSession.getAttribute("searchResultsUser"));
+    public String ordersSearchUser(@RequestParam String search){
+        searchResults = searchObjects(ordersSorted, search);
         return "redirect:/orders/search/user";
     }
 
     @GetMapping("/orders/search/user")
-    public String ordersSearchUser(Model model, HttpSession httpSession){
-        List<Orders> list = (List<Orders>) httpSession.getAttribute("searchResultsUser");
-        model.addAttribute("ordersUser", list);
-        httpSession.removeAttribute("searchResultsUser");
-
-        System.out.println(httpSession.getAttribute("searchResultsUser"));
+    public String ordersSearchUser(Model model){
+        model.addAttribute("ordersUser", searchResults);
         return "orders/orders";
     }
 
     @PostMapping("/orders/search/admin")
-    public String ordersSearchAdmin(@RequestParam String search, HttpSession httpSession){
-        List<Orders> searchResults = searchObjects(orders, search);
-        httpSession.setAttribute("searchResultsAdmin", searchResults);
+    public String ordersSearchAdmin(@RequestParam String search){
+        searchResults = searchObjects(orders, search);
         return "redirect:/orders/search/admin";
     }
     @GetMapping("/orders/search/admin")
-    public String ordersSearchAdmin(Model model, HttpSession httpSession){
-        model.addAttribute("ordersAdmin", httpSession.getAttribute("searchResultsAdmin"));
-        httpSession.removeAttribute("searchResultsAdmin");
+    public String ordersSearchAdmin(Model model){
+        model.addAttribute("ordersAdmin", searchResults);
         return "orders/orders";
     }
 

@@ -5,6 +5,7 @@ import com.example.cosmetology.authorization.model.User;
 import com.example.cosmetology.mail.config.MailSender;
 import com.example.cosmetology.repository.UserRepo;
 import jakarta.servlet.http.HttpSession;
+import org.apache.catalina.session.StandardSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class AuthorizationController {
     }
 
     @GetMapping("/reg")
-    public String reg(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
+    public String reg(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model, HttpSession session){
         if (error.equals("username")){
             model.addAttribute("error","Данный логин занят!");
         } else if (error.equals("usernameMin")) {

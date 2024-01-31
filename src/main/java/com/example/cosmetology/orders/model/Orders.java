@@ -29,7 +29,7 @@ public class Orders {
     private String purchase_price;
     @Column(name = "quantity")
     private String quantity;
-    @Column(name = "description",length = 18000)
+    @Column(name = "description", length = 18000)
     private String description;
     @Column(name = "current_datee")
     private String currenDate;
@@ -37,7 +37,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description,String currenDate) {
+    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description, String currenDate) {
         this.name = name;
         this.price = price;
         this.expiration_date = expiration_date;
@@ -159,21 +159,4 @@ public class Orders {
         return Objects.hash(getName(), getImg());
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", expiration_date='" + expiration_date + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", country_of_manufacture='" + country_of_manufacture + '\'' +
-                ", purpose_of_use='" + purpose_of_use + '\'' +
-                ", img='" + img + '\'' +
-                ", purchase_price='" + purchase_price + '\'' +
-                ", quantity='" + quantity + '\'' +
-                ", description='" + description + '\'' +
-                ", currenDate='" + currenDate + '\'' +
-                '}';
-    }
 }
