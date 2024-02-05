@@ -27,26 +27,28 @@ public class MailController {
                             @RequestParam String phone,
                             @RequestParam String date,
                             @RequestParam String time) {
-        MailServiceImpl mailService = new MailServiceImpl();
-        boolean tracking = mailService.tracking();
-
-        if (!tracking){
-            return "redirect:/mail?error=limit";
-        } else if (name.length()<=5 || phone.length() <= 5 || date.length() <=5 || time.length() <= 2){
+        if (name.length()<=5 || phone.length() <= 5 || date.length() <=5 || time.length() <= 2){
             return "redirect:/mail?error=min";
         }else {
-            try {
-                String emailTo = "p-vikulinpbb@yandex.ru";
-                String subject = "Новая заявка на запись";
-                String message = "ФИО: " + name + "\n"
-                        + "Номер для связи: " + phone + "\n"
-                        + "Желаемая дата: " + date + "\n"
-                        + "Желаемое время: " + time + "\n";
-                mailSender.send(emailTo, subject, message);
-            } catch (Exception e) {
-                e.printStackTrace();
+            MailServiceImpl mailService = new MailServiceImpl();
+            boolean tracking = mailService.tracking();
+
+            if (!tracking){
+                return "redirect:/mail?error=limit";
+            } else {
+                try {
+                    String emailTo = "p-vikulinpbb@yandex.ru";
+                    String subject = "Новая заявка на запись";
+                    String message = "ФИО: " + name + "\n"
+                            + "Номер для связи: " + phone + "\n"
+                            + "Желаемая дата: " + date + "\n"
+                            + "Желаемое время: " + time + "\n";
+                    mailSender.send(emailTo, subject, message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 }

@@ -61,14 +61,6 @@
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-                <a th:href="@{/expired-product}">Продаваемые товары, срок годности меньше 6 месяцев</a>
-            </span>
-
-            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-                <a th:href="@{/expired-product-personal}">Личные товары, срок годности меньше 6 месяцев</a>
-            </span>
-
-            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
                 <a th:href="@{/monthly-report}">Ежемесячный отчет</a>
             </span>
 

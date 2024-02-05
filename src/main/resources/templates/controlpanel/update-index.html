@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Редактирование главной страницы</title>
+  <link rel="icon" href="/image/logo2.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
   <link rel="stylesheet" th:href="@{/main.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -15,7 +18,7 @@
     <h1>Редактирование главной формы</h1>
 
     <textarea type="text" name="activity" placeholder="Введите главный текст" th:text="${aboutTheSalon.activity}"></textarea>
-    <textarea type="text" name="history" placeholder="Введите историю салона" th:text="${aboutTheSalon.history}"></textarea>
+    <textarea type="text" name="history" placeholder="Введите вторичный текст" th:text="${aboutTheSalon.history}"></textarea>
     <textarea type="text" name="procedures" placeholder="Введите услуги" th:text="${aboutTheSalon.procedures}"></textarea>
 
     <input type="text" name="img" placeholder="Вставьте ссылку фото" th:value="${addresofthesalon.img}">

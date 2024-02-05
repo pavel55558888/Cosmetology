@@ -105,7 +105,7 @@ public class AuthorizationController {
     }
 
     @GetMapping("/recovery")
-    public String recovery(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
+    public String recovery(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model, HttpSession httpSession){
         if (error.equals("emailMin")){
             model.addAttribute("error", "Введите e-mail!");
         } else if (error.equals("emailNull")){
@@ -163,7 +163,7 @@ public class AuthorizationController {
     @GetMapping("/recovery/code")
     public String recoveryCode(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
         if (error.equals("code")){
-            model.addAttribute("error", "Неверный код!");
+            model.addAttribute("error", "Неверный код! В случае если уже были попытки замены пароля, поробуйте снова через 60 минут");
         }
         return "login/recovery-code";
     }
@@ -184,7 +184,7 @@ public class AuthorizationController {
         } else if(error.equals("max")){
             model.addAttribute("error", "Пароль слишком большой!");
         } else if(error.equals("notEquals")){
-            model.addAttribute("error", "Парольи разные!");
+            model.addAttribute("error", "Пароли разные!");
         }
         return "login/recovery-pass";
     }

@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Товары</title>
+    <link rel="icon" href="/image/logo2.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/main.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -12,13 +15,13 @@
 <main class="container">
     <h1 class="basket">Каталог товаров</h1>
     <form class="search-container" th:action="@{/orders/search/user}" method="post" sec:authorize="hasAuthority('USER') || !isAuthenticated()">
-        <input type="text" name="search" placeholder="Поиск">
-        <button>Поиск</button>
+        <input type="text" name="search" placeholder="Строка для поиска товара">
+        <button>Найти</button>
     </form>
 
     <form class="search-container" th:action="@{/orders/search/admin}" method="post" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
         <input type="text" name="search" placeholder="Строка для поиска товара">
-        <button>Поиск</button>
+        <button>Найти</button>
     </form>
 
     <div class = "div_orders" sec:authorize="hasAuthority('USER') || !isAuthenticated()">

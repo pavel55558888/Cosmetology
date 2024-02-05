@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Подтверждение кода</title>
+  <link rel="icon" href="/image/logo2.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
   <link rel="stylesheet" th:href="@{/main.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -16,7 +19,7 @@
     <input placeholder="Введите код" type="text" name="code">
     <button>Подтвердить</button>
 
-    <h1 th:text="${error}" style="color: red"/>
+    <h3 th:text="${error}" style="color: red"/>
   </form>
 
 
