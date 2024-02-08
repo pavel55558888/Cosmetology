@@ -17,14 +17,15 @@
   <form th:action="@{'/orders/' + ${order.id} + '/update/add'}" method="post" id="form">
     <h1>Редактирование товара</h1>
     <input type="text" name="name" placeholder="Введите название" th:value="${order.name}">
-    <input type="text" name="price" placeholder="Введите цену" th:value="${order.price}">
+    <input type="number" name="price" placeholder="Введите цену" th:value="${order.price}">
     <input type="date" name="expiration_date" placeholder="Введите срок годности" th:value="${order.expiration_date}">
     <input type="text" name="manufacturer" placeholder="Введите производителя" th:value="${order.manufacturer}">
     <input type="text" name="country_of_manufacture" placeholder="Введите страну производства" th:value="${order.country_of_manufacture}">
-    <input type="text" name="purpose_of_use" placeholder="Введите область применения" th:value="${order.purpose_of_use}">
+    <input type="text" name="purpose_of_use" placeholder="Введите ключевые слова" th:value="${order.purpose_of_use}">
     <input type="text" name="img" placeholder="Вставте ссылку на фото" th:value="${order.img}">
-    <input type="text" name="purchase_price" placeholder="Введите закупочную стоимость" th:value="${order.purchase_price}">
-    <input type="text" name="quantity" placeholder="Введите количество" th:value="${order.quantity}">
+    <input type="number" name="purchase_price" placeholder="Введите закупочную стоимость" th:value="${order.purchase_price}">
+    <input type="number" name="quantity" placeholder="Введите количество" th:value="${order.quantity}">
+    <input type="number" name="code" placeholder="Введите код" th:value="${order.code}">
     <textarea type="text" name="description" placeholder="Введите описание" th:text="${order.description}"></textarea>
 
     <h3 th:text="${error}" style="color: red"/>

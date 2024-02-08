@@ -15,7 +15,7 @@
 <main class="container">
 
   <img class="full_order" id="full_order_img" th:src="${order.img}" alt="Извините, фото не найдено">
-
+  <br><br><br>
   <div id="edit-btn-center">
     <form class="edit-btn" th:action="@{'/orders/' + ${order.id} + '/delete'}" method="post" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
       <button>Удалить</button>
@@ -31,16 +31,19 @@
   </div>
 
   <h1 class="full_order" th:text="${order.name}"/>
-  <h3 class="full_order" th:text="'Цена: ' + ${order.price}"/>
+  <br><br><br>
+  <h1 class="full_order" th:text="${order.price} + ' ₽'"/>
+  <br><br>
   <h4 class="full_order" th:text="'Производитель: ' + ${order.manufacturer}"/>
   <h4 class="full_order" th:text="'Произведено в: ' + ${order.country_of_manufacture}"/>
-  <br>
+  <br><br><br>
   <h2 class="full_order" th:text="${order.description}"/>
   <hr class="hr_index" id="hr" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
   <h3 class="full_order" th:text="'Годен до: ' + ${order.expiration_date}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
   <h3 class="full_order" th:text="'Закупочная цена: ' + ${order.purchase_price}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
   <h3 class="full_order" th:text="'В наличие: ' + ${order.quantity}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
   <h3 class="full_order" th:text="'Ключевое слово: ' + ${order.purpose_of_use}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
+  <h3 class="full_order" th:text="'Код товара: ' + ${order.code}" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')"/>
 
 
 

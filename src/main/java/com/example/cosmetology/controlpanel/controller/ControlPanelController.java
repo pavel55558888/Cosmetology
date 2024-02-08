@@ -104,18 +104,19 @@ public class ControlPanelController {
                            @RequestParam String img,
                            @RequestParam String purchase_price,
                            @RequestParam String quantity,
-                           @RequestParam String description){
+                           @RequestParam String description,
+                           @RequestParam String code){
 
         if(name.equals("") || price.equals("") || expiration_date.equals("") || manufacturer.equals("") || country_of_manufacture.equals("")
-                || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("")){
+                || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("") || code.equals("")){
             return "redirect:/controlpanel/neworder?error=null";
         } else if (name.length() >= 250 || price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
                 || country_of_manufacture.length() >= 250 || purchase_price.length() >= 250 || purpose_of_use.length() >= 250 || img.length() >= 250
-                || quantity.length() >= 250 || description.length() >= 18000) {
+                || quantity.length() >= 250 || description.length() >= 18000 || code.length() >=250) {
             return "redirect:/controlpanel/neworder?error=max";
         } else{
             LocalDate currentDate = LocalDate.now();
-            Orders orders = new Orders(name, price,expiration_date,manufacturer,country_of_manufacture,purpose_of_use,img,purchase_price,quantity,description,currentDate.toString());
+            Orders orders = new Orders(name, price,expiration_date,manufacturer,country_of_manufacture,purpose_of_use,img,purchase_price,quantity,description,currentDate.toString(),code);
             ordersRepo.save(orders);
         }
         return "redirect:/orders";
@@ -179,7 +180,8 @@ public class ControlPanelController {
                                       @RequestParam String expiration_date,
                                       @RequestParam String manufacturer,
                                       @RequestParam String img,
-                                      @RequestParam String in_stock){
+                                      @RequestParam String in_stock,
+                                      @RequestParam String code){
         if (name.equals("") || purchase_price.equals("") || expiration_date.equals("") || manufacturer.equals("") || img.equals("") || in_stock.equals("")){
             return "redirect:/controlpanel/neworderpersonal?error=null";
         } else if (name.length() >= 250 || purchase_price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
@@ -187,7 +189,7 @@ public class ControlPanelController {
             return "redirect:/controlpanel/neworderpersonal?error=max";
         }
         LocalDate currentDate = LocalDate.now();
-        Consumables consumables = new Consumables(name,purchase_price,expiration_date,manufacturer,img,in_stock,currentDate.toString());
+        Consumables consumables = new Consumables(name,purchase_price,expiration_date,manufacturer,img,in_stock,currentDate.toString(),code);
         consumablesRepo.save(consumables);
         return "redirect:/controlpanel/orderpersonal";
     }
@@ -241,6 +243,8 @@ public class ControlPanelController {
             model.addAttribute("error","Какое-то из полей слишком слишком короткое!");
         } else if (error.equals("max")) {
             model.addAttribute("error","Какое-то из полей слишком слишком длинное!");
+        } else if (error.equals("email")){
+            model.addAttribute("error","Почта уже занята, расторгните договор или используйте другую почту");
         }
         return "controlpanel/new-user";
     }
@@ -252,6 +256,8 @@ public class ControlPanelController {
                              @RequestParam String role){
         if (userRepo.findByUsername(username) != null) {
             return "redirect:/controlpanel/newuser?error=username";
+        } else if (userRepo.findByMail(email) != null){
+            return "redirect:/controlpanel/newuser?error=email";
         }else if(password.length()<=5 || username.length() <=5 || email.length() <=5){
             return "redirect:/controlpanel/newuser?error=min";
         } else if (username.length() >= 250 || email.length() >= 250 || password.length() >=250) {
@@ -270,7 +276,6 @@ public class ControlPanelController {
         }else{
             user = new User(username, email, password, true, Collections.singleton(Role.USER));
         }
-        System.out.println(role);
         userRepo.save(user);
         return "redirect:/";
     }

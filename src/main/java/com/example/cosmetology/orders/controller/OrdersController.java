@@ -68,13 +68,14 @@ public class OrdersController {
                                  @RequestParam String img,
                                  @RequestParam String purchase_price,
                                  @RequestParam String quantity,
-                                 @RequestParam String description){
+                                 @RequestParam String description,
+                                 @RequestParam String code){
         if(name.equals("") || price.equals("") || expiration_date.equals("") || manufacturer.equals("") || country_of_manufacture.equals("")
-                || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("")){
+                || purpose_of_use.equals("") || img.equals("") || purchase_price.equals("") || quantity.equals("") || description.equals("") || code.equals("")){
             return "redirect:/orders/{id}/update?error=null";
         }else if (name.length() >= 250 || price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
                 || country_of_manufacture.length() >= 250 || purchase_price.length() >= 250 || purpose_of_use.length() >= 250 || img.length() >= 250
-                || quantity.length() >= 250 || description.length() >= 18000) {
+                || quantity.length() >= 250 || description.length() >= 18000 || code.length() >= 250) {
             return "redirect:/orders/{id}/update?error=max";
         }else{
             Orders orders = ordersRepo.findById(id).orElse(new Orders());
@@ -88,6 +89,7 @@ public class OrdersController {
             orders.setPurchase_price(purchase_price);
             orders.setQuantity(quantity);
             orders.setDescription(description);
+            orders.setCode(code);
             ordersRepo.save(orders);
         }
         return "redirect:/orders";

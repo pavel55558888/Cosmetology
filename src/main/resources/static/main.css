@@ -511,16 +511,17 @@ input[type="checkbox"] {
     .search-container > button{
         width: 30%;
         height: 50px;
-        margin-right: 3%;
-        margin-left: -5%;
+        margin-right: -5%;
+        margin-left: -6%;
         text-align: center;
         display: inline-flex;
         align-items: center;
     }
     .search-container > input{
         font-size: 14px;
-        margin-right: -5%;
-        margin-left: 3%;
+        margin-right: -6%;
+        margin-left: -5%;
+        width: 82%;
     }
     .div_basket > div{
         margin-top: 20px;

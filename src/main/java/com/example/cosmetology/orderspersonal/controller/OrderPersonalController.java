@@ -49,11 +49,12 @@ public class OrderPersonalController {
                                          @RequestParam String expiration_date,
                                          @RequestParam String manufacturer,
                                          @RequestParam String img,
-                                         @RequestParam String in_stock){
-        if (name.equals("") || purchase_price.equals("") || expiration_date.equals("") || manufacturer.equals("") || img.equals("") || in_stock.equals("")){
+                                         @RequestParam String in_stock,
+                                         @RequestParam String code){
+        if (name.equals("") || purchase_price.equals("") || expiration_date.equals("") || manufacturer.equals("") || img.equals("") || in_stock.equals("") || code.equals("")){
             return "redirect:/controlpanel/orderpersonal/{id}/update?error=null";
         } else if (name.length() >= 250 || purchase_price.length() >= 250 || expiration_date.length() >= 250 || manufacturer.length() >= 250
-                || img.length() >= 250 || in_stock.length() >= 250){
+                || img.length() >= 250 || in_stock.length() >= 250 || code.length() >=250){
             return "redirect:/controlpanel/orderpersonal/{id}/update?error=max";
         } else {
             Consumables consumables = consumablesRepo.findById(id).orElse(new Consumables());
@@ -63,6 +64,7 @@ public class OrderPersonalController {
             consumables.setManufacturer(manufacturer);
             consumables.setImg(img);
             consumables.setIn_stock(in_stock);
+            consumables.setCode(code);
             consumablesRepo.save(consumables);
         }
         return "redirect:/controlpanel/orderpersonal";

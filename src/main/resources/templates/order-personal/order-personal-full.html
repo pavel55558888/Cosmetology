@@ -27,10 +27,11 @@
     </div>
 
     <h2 class="full_order" th:text="${order.name}"/>
-    <h4 class="full_order" th:text="${order.purchase_price}"/>
-    <h4 class="full_order" th:text="${order.expiration_date}"/>
-    <h4 class="full_order" th:text="${order.manufacturer}"/>
-    <h4 class="full_order" th:text="${order.in_stock}"/>
+    <h4 class="full_order" th:text="'Закупочная цена: ' + ${order.purchase_price}"/>
+    <h4 class="full_order" th:text="'Годен до: ' + ${order.expiration_date}"/>
+    <h4 class="full_order" th:text="'Производитель: ' + ${order.manufacturer}"/>
+    <h4 class="full_order" th:text="'В налачие: ' + ${order.in_stock}"/>
+    <h4 class="full_order" th:text="'Код товара: ' + ${order.code}"/>
 
 </main>
 

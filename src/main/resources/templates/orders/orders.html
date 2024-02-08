@@ -28,9 +28,9 @@
         <div th:each="el : ${ordersUser}" id="div_orders">
             <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено"></a>
             <h3 th:text="${el.name}"/>
-            <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
+            <h2 th:text="${el.price} + ' ₽'"/>
             <h4 th:text="${el.manufacturer}"/>
-
+            <br>
             <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER') || hasAuthority('USER')">
                 <button>🛒</button>
             </form>
@@ -41,7 +41,7 @@
         <div th:each="el : ${ordersAdmin}" id="div_orders_admin">
             <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order_admin" alt="Извините, фото не найдено"></a>
             <h3 th:text="${el.name}"/>
-            <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
+            <h2 th:text="${el.price} + ' ₽'"/>
             <h4 th:text="${el.manufacturer}"/>
 
             <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER')">

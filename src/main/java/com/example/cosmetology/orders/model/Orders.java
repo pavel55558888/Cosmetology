@@ -33,11 +33,13 @@ public class Orders {
     private String description;
     @Column(name = "current_datee")
     private String currenDate;
+    @Column(name = "code_orders")
+    private String code;
 
     public Orders() {
     }
 
-    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description, String currenDate) {
+    public Orders(String name, String price, String expiration_date, String manufacturer, String country_of_manufacture, String purpose_of_use, String img, String purchase_price, String quantity, String description, String currenDate, String code) {
         this.name = name;
         this.price = price;
         this.expiration_date = expiration_date;
@@ -49,6 +51,7 @@ public class Orders {
         this.quantity = quantity;
         this.description = description;
         this.currenDate = currenDate;
+        this.code = code;
     }
 
     public long getId() {
@@ -147,16 +150,23 @@ public class Orders {
         this.currenDate = currenDate;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Orders orders)) return false;
-        return Objects.equals(getName(), orders.getName()) && Objects.equals(getImg(), orders.getImg());
+        return Objects.equals(getName(), orders.getName()) && Objects.equals(getImg(), orders.getImg()) && Objects.equals(getCode(), orders.getCode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getImg());
+        return Objects.hash(getName(), getImg(), getCode());
     }
-
 }
