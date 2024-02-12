@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+  <form th:action="@{/login}" method="post" id="form">
+    <h1>Авторизация</h1>
+    <input type="text" name="username" placeholder="Введите логин">
+    <input type="password" name="password" placeholder="Введите пароль">
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <a th:href="@{/recovery}">Восстановить пароль</a>
+    <br>
+    <h4>У вас нет аккаунта?<a th:href="@{/reg}"> Зарегестрируйтесь</a></h4>
+
+    <div th:if="${recovery}" class="centered-message">
+      <div class="custom-alert" role="alert" th:text="${recovery}"></div>
+    </div>
+    <button type="submit">Войти</button>
+  </form>
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

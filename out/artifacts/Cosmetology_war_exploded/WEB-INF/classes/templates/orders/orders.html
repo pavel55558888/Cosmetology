@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Товары</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+    <h1 class="basket">Каталог товаров</h1>
+    <form class="search-container" th:action="@{/orders/search/user}" method="post" sec:authorize="hasAuthority('USER') || !isAuthenticated()">
+        <input type="text" name="search" placeholder="Поиск">
+        <button>Поиск</button>
+    </form>
+
+    <form class="search-container" th:action="@{/orders/search/admin}" method="post" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+        <input type="text" name="search" placeholder="Строка для поиска товара">
+        <button>Поиск</button>
+    </form>
+
+    <div class = "div_orders" sec:authorize="hasAuthority('USER') || !isAuthenticated()">
+        <div th:each="el : ${ordersUser}" id="div_orders">
+            <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order" alt="Извините, фото не найдено"></a>
+            <h3 th:text="${el.name}"/>
+            <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
+            <h4 th:text="${el.manufacturer}"/>
+
+            <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER') || hasAuthority('USER')">
+                <button>🛒</button>
+            </form>
+        </div>
+    </div>
+
+    <div class = "div_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+        <div th:each="el : ${ordersAdmin}" id="div_orders_admin">
+            <a th:href="'/orders/' + ${el.id}"><img th:src="${el.img}" id="img_order_admin" alt="Извините, фото не найдено"></a>
+            <h3 th:text="${el.name}"/>
+            <h4 th:text="'Цена: ' + ${el.price} + ' рублей'"/>
+            <h4 th:text="${el.manufacturer}"/>
+
+            <form class="buy_btn" th:action="@{'/orders/' + ${el.id} + '/basket'}" method="post" sec:authorize="hasAuthority('DEVELOPER')">
+                <button>🛒</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${successMessage}" class="centered-message">
+        <div class="custom-alert" role="alert" th:text="${successMessage}"></div>
+    </div>
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

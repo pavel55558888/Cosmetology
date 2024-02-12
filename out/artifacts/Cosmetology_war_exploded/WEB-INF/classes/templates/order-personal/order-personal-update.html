@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование товара</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+  <form th:action="@{'/controlpanel/orderpersonal/' + ${order.id} + '/update/add'}" method="post" id="form">
+    <h1>Редактирование товара</h1>
+    <input type="text" name="name" placeholder="Введите название" th:value="${order.name}">
+    <input type="text" name="purchase_price" placeholder="Введите закупочную стоимость" th:value="${order.purchase_price}">
+    <input type="date" name="expiration_date" placeholder="Введите срок годности" th:value="${order.expiration_date}">
+    <input type="text" name="manufacturer" placeholder="Введите производителя" th:value="${order.manufacturer}">
+    <input type="text" name="img" placeholder="Вставьте ссылку на фото" th:value="${order.img}">
+    <input type="text" name="in_stock" placeholder="Введите колличество в наличии" th:value="${order.in_stock}">
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Изменить</button>
+  </form>
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

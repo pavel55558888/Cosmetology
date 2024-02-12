@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование новости</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+  <form id="form" th:action="@{'/articles/' + ${update.id} + '/update/add'}" method="post">
+    <h1>Редактирование статьи</h1>
+    <input type="text" name="name" placeholder="Введите название для сатьи" th:value="${update.name}">
+    <input type="date" name="date" placeholder="Введите дату" th:value="${update.date}">
+    <input type="text" name="img" placeholder="Вставьте ссылку на фото" th:value="${update.img}">
+    <textarea type="text" name="description" placeholder="Напишите описание" th:text="${update.description}"></textarea>
+
+    <h3 th:text="${error}" style="color: red"/>
+
+    <button>Изменить</button>
+  </form>
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>
