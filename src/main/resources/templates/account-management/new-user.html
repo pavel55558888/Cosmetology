@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Новый пользователь</title>
+  <link rel="icon" href="/image/logo2.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{/main.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div th:replace="~{layouts/header :: header}"></div>
+
+<main class="container">
+
+    <form th:action="@{/newuser/add}" method="post" class="form">
+      <h1>Управление аккаунтами</h1>
+      <br><br>
+      <h3>Создать новый аккаунт</h3>
+      <input type="text" name="username" placeholder="Введите логин">
+      <input type="email" name="email" placeholder="Введите e-mail">
+      <input type="text" name="password" placeholder="Введите пароль">
+
+      <select type="text" name="role" id="option">
+        <option value="USER">Пользователь</option>
+        <option value="EMPLOYEE">Сотрудник</option>
+        <option value="ADMIN">Администратор</option>
+        <option value="DEVELOPER">Разработчик</option>
+      </select>
+
+      <h3 th:text="${error}" style="color: red"/>
+
+      <button>Создать</button>
+
+    </form>
+
+    <br><br><br><br><br>
+
+    <form th:action="@{/userdelete}" method="post" class="form">
+      <h3>Расторгнуть договор</h3>
+      <input type="email" name="email" placeholder="Введите e-mail">
+      <h6>Будут удалены все данные безвозвратно</h6>
+      <h3 th:text="${error2}" style="color: red"/>
+
+      <button>Расторгнуть</button>
+    </form>
+
+</main>
+
+<div th:replace="~{layouts/footer :: footer}"></div>
+
+</body>
+</html>

@@ -185,6 +185,13 @@ form > h4{
     flex-direction: column;
 }
 
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .img{
     border-radius: 10px;
     border: 0px #ccc solid;
@@ -461,6 +468,106 @@ input[type="checkbox"] {
     justify-content: center;
 }
 
+.carousel-container {
+    padding: 80px 80px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card_div {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.cards-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+    transform: translateX(-5%);
+    width: fit-content;
+}
+
+.card {
+    height: 380px;
+    width: 300px;
+    background-color: #BDF5FE;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    transition: transform 0.4s ease-out;
+    position: relative;
+    padding: 10px;
+}
+
+.carousel-container .prev,
+.carousel-container .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.carousel-container .prev {
+    left: 0;
+}
+
+.carousel-container .next {
+    right: 0;
+}
+
+.card > img {
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.card:not(:first-child) {
+    margin-left: -50px;
+    transition: 0.8s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    transition: 0.8s ease-out;
+}
+
+.card:hover ~ .card {
+    position: relative;
+    left: 50px;
+    transition: 0.8s ease-out;
+}
+
+.bar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    height: 5px;
+    width: 270px;
+}
+
+.emptybar {
+    background-color: #2e3033;
+    width: 100%;
+    height: 100%;
+}
+
+.filledbar {
+    position: absolute;
+    top: 0px;
+    z-index: 3;
+    width: 0px;
+    height: 100%;
+    background: rgb(0, 154, 217);
+    background: linear-gradient(90deg, rgba(0, 154, 217, 1) 0%, rgba(217, 147, 0, 1) 65%, rgba(255, 186, 0, 1) 100%);
+    transition: 0.6s ease-out;
+}
+
+.card:hover .filledbar {
+    width: 270px;
+    transition: 0.4s ease-out;
+}
+
 @media only screen and (max-width: 600px) {
     .logo{margin-top: 20px}
     form > button,
@@ -539,4 +646,14 @@ input[type="checkbox"] {
     }
     #but_exit{font-size: 16px;}
     .dropbtn{color: black;}
+    .card {
+        height: 280px;
+        width: 200px;
+    }
+    .bar {
+        width: 200px;
+    }
+    .card:hover .filledbar {
+        width: 200px;
+    }
 }

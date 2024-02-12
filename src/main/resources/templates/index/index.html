@@ -61,9 +61,43 @@
         <h3 class="history_index" th:text="${el.history}"/>
         <br>
         <br>
-        <h2 class="history_index">Наши услуги</h2>
-        <h3 class="history_index" th:text="${el.procedures}"/>
     </div>
+
+    <div class="carousel-container">
+        <div class="card_div">
+            <div class="cards-wrapper">
+                <div class="card" th:each="el : ${services}">
+                    <img th:src="${el.img}" alt="Извините фото не найдено">
+                    <h3 th:text="${el.name}"></h3>
+                    <h5 th:text="${el.description}"></h5>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="moveSlides(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlides(1)">&#10095;</button>
+    </div>
+    <script>
+        var currentIndex = 0;
+        var totalSlides = document.querySelectorAll('.card').length;
+        var cardWidth = document.querySelector('.card').offsetWidth;
+        var wrapperWidth = totalSlides * cardWidth;
+        var stepFactor = 0.5;
+
+        function moveSlides(n) {
+            currentIndex = (currentIndex + n) % totalSlides;
+            if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            }
+            var slideOffset = -(currentIndex * cardWidth * stepFactor);
+            var transitionDuration = '0.8s';
+            document.querySelector('.cards-wrapper').style.transitionDuration = transitionDuration;
+            document.querySelector('.cards-wrapper').style.transform = 'translateX(' + slideOffset + 'px)';
+        }
+    </script>
 
     <hr class="hr_index">
 
@@ -82,6 +116,10 @@
         <h1 th:text="${el.name}"/>
         <a th:href="'/articles/' + ${el.id}"><img th:src="${el.img}" class="img" id="img_news" alt="Извините, фото не найдено"></a>
         <h6 th:text="${el.date}"/>
+    </div>
+
+    <div th:if="${successMessage}" class="centered-message">
+        <div class="custom-alert" role="alert" th:text="${successMessage}"></div>
     </div>
 </main>
 

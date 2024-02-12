@@ -5,7 +5,6 @@ import com.example.cosmetology.authorization.model.User;
 import com.example.cosmetology.mail.config.MailSender;
 import com.example.cosmetology.repository.UserRepo;
 import jakarta.servlet.http.HttpSession;
-import org.apache.catalina.session.StandardSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.SecureRandom;
 import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

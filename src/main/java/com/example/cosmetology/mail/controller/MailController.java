@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 @Controller
 public class MailController {
     @Autowired
@@ -26,7 +28,8 @@ public class MailController {
     public String sendEmail(@RequestParam String name,
                             @RequestParam String phone,
                             @RequestParam String date,
-                            @RequestParam String time) {
+                            @RequestParam String time,
+                            RedirectAttributes redirectAttributes) {
         if (name.length()<=5 || phone.length() <= 5 || date.length() <=5 || time.length() <= 2){
             return "redirect:/mail?error=min";
         }else {
@@ -44,6 +47,7 @@ public class MailController {
                             + "Желаемая дата: " + date + "\n"
                             + "Желаемое время: " + time + "\n";
                     mailSender.send(emailTo, subject, message);
+                    redirectAttributes.addFlashAttribute("successMessage", "Заявка успешно отправлена!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

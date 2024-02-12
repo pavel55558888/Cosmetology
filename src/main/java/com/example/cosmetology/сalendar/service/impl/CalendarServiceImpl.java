@@ -48,6 +48,7 @@ public class CalendarServiceImpl implements CalendarService {
     public List<Calendar> caledarSelectName(String firstname, String name) {
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Calendar.class).buildSessionFactory();
         List<Calendar> list;
+        LocalDate currenDate = LocalDate.now();
         try {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
@@ -55,6 +56,10 @@ public class CalendarServiceImpl implements CalendarService {
             session.getTransaction().commit();
         } finally {
             factory.close();
+        }
+
+        if (list.isEmpty()){
+            list.add(new Calendar("Записей нет","","","",currenDate.toString(),""));
         }
 
         return list;

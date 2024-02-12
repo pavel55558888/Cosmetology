@@ -41,23 +41,19 @@
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/neworder}">Добавить новый товар для продажи</a>
-            </span>
-
-            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
                 <a th:href="@{/controlpanel/newarticles}">Добавить новую статью</a>
             </span>
 
-            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-                <a th:href="@{/controlpanel/updateindex}">Редактировать главную старницу</a>
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
+                <a th:href="@{/controlpanel/neworder}">Добавить новый товар</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/neworderpersonal}">Добавить новый товар для личного использования</a>
+                <a th:href="@{/controlpanel/neworderpersonal}">Добавить новый инвентарь</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/orderpersonal}">Просмотр товара для личного использования</a>
+                <a th:href="@{/controlpanel/orderpersonal}">Просмотр инвентаря</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
@@ -65,7 +61,11 @@
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-                <a th:href="@{/controlpanel/newuser}">Создать нового пользователя</a>
+                <a th:href="@{/newuser}">Управление аккаунтами</a>
+            </span>
+
+            <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+                <a th:href="@{/updateindex}">Редактировать главную старницу</a>
             </span>
 
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">

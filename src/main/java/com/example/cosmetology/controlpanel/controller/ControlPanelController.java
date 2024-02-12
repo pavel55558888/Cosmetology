@@ -122,48 +122,6 @@ public class ControlPanelController {
         return "redirect:/orders";
     }
 
-    @GetMapping("/controlpanel/updateindex")
-    public String updateIndex(Model model, @RequestParam(value = "error",defaultValue = "", required = false) String error){
-        AboutTheSalon aboutTheSalons = aboutTheSalonRepo.findById(1L).orElse(new AboutTheSalon());
-        model.addAttribute("aboutTheSalon",aboutTheSalons);
-
-        AddressOfTheSalon addressOfTheSalons = addressOfTheSalonRepo.findById(1L).orElse(new AddressOfTheSalon());
-        model.addAttribute("addresofthesalon", addressOfTheSalons);
-
-        if (error.equals("null")){
-            model.addAttribute("error", "Заполните все поля!");
-        } else if (error.equals("max")){
-            model.addAttribute("error", "Какое-то поле слишком длинное!");
-        }
-
-        return "controlpanel/update-index";
-    }
-
-    @PostMapping("/controlpanel/updateindex/add")
-    public String updateIndexAdd(@RequestParam String activity,
-                                 @RequestParam String history,
-                                 @RequestParam String procedures,
-                                 @RequestParam String img,
-                                 @RequestParam String address){
-        if (activity.equals("") || history.equals("") || procedures.equals("") || img.equals("") || address.equals("")){
-            return "redirect:/controlpanel/updateindex?error=null";
-        } else if (activity.length() >= 5000 || history. length() >= 5000 || procedures.length() >= 5000 || img.length() >= 250 || address.length() >= 250) {
-            return "redirect:/controlpanel/updateindex?error=max";
-        } else{
-            AboutTheSalon aboutTheSalon = aboutTheSalonRepo.findById(1L).orElse(new AboutTheSalon());
-            aboutTheSalon.setActivity(activity);
-            aboutTheSalon.setHistory(history);
-            aboutTheSalon.setProcedures(procedures);
-            aboutTheSalonRepo.save(aboutTheSalon);
-
-            AddressOfTheSalon addressOfTheSalon = addressOfTheSalonRepo.findById(1L).orElse(new AddressOfTheSalon());
-            addressOfTheSalon.setImg(img);
-            addressOfTheSalon.setAddress(address);
-            addressOfTheSalonRepo.save(addressOfTheSalon);
-        }
-        return "redirect:/";
-    }
-
     @GetMapping("/controlpanel/neworderpersonal")
     public String newOrderPersonal(@RequestParam(value = "error", defaultValue = "", required = false) String error, Model model){
         if (error.equals("null")){
@@ -232,51 +190,6 @@ public class ControlPanelController {
                 monthlyReport.selectMonthlyReportСheck();
             }
         }
-        return "redirect:/";
-    }
-
-    @GetMapping("/controlpanel/newuser")
-    public String newUser(@RequestParam(value = "error",defaultValue = "",required = false) String error, Model model){
-        if (error.equals("username")){
-            model.addAttribute("error","Данный логин занят!");
-        } else if (error.equals("min")) {
-            model.addAttribute("error","Какое-то из полей слишком слишком короткое!");
-        } else if (error.equals("max")) {
-            model.addAttribute("error","Какое-то из полей слишком слишком длинное!");
-        } else if (error.equals("email")){
-            model.addAttribute("error","Почта уже занята, расторгните договор или используйте другую почту");
-        }
-        return "controlpanel/new-user";
-    }
-
-    @PostMapping("/controlpanel/newuser/add")
-    public String newUserAdd(@RequestParam String username,
-                             @RequestParam String email,
-                             @RequestParam String password,
-                             @RequestParam String role){
-        if (userRepo.findByUsername(username) != null) {
-            return "redirect:/controlpanel/newuser?error=username";
-        } else if (userRepo.findByMail(email) != null){
-            return "redirect:/controlpanel/newuser?error=email";
-        }else if(password.length()<=5 || username.length() <=5 || email.length() <=5){
-            return "redirect:/controlpanel/newuser?error=min";
-        } else if (username.length() >= 250 || email.length() >= 250 || password.length() >=250) {
-            return "redirect:/controlpanel/newuser?error=max";
-        }
-        User user;
-        password = passwordEncoder.encode(password);
-        if (role.toString().equals("USER")){
-            user = new User(username, email, password, true, Collections.singleton(Role.USER));
-        }else if (role.equals("EMPLOYEE")) {
-            user = new User(username, email, password, true, Collections.singleton(Role.EMPLOYEE));
-        }else if (role.equals("ADMIN")) {
-            user = new User(username, email, password, true, Collections.singleton(Role.ADMIN));
-        } else if (role.equals("DEVELOPER")) {
-            user = new User(username, email, password, true, Collections.singleton(Role.DEVELOPER));
-        }else{
-            user = new User(username, email, password, true, Collections.singleton(Role.USER));
-        }
-        userRepo.save(user);
         return "redirect:/";
     }
 }

@@ -14,12 +14,11 @@
 
 <main class="container">
 
-  <form th:action="@{/controlpanel/updateindex/add}" method="post" id="form">
-    <h1>Редактирование главной формы</h1>
+  <form th:action="@{/updateindex/add}" method="post" id="form">
+    <h1>Редактирование главной страницы</h1>
 
     <textarea type="text" name="activity" placeholder="Введите главный текст" th:text="${aboutTheSalon.activity}"></textarea>
     <textarea type="text" name="history" placeholder="Введите вторичный текст" th:text="${aboutTheSalon.history}"></textarea>
-    <textarea type="text" name="procedures" placeholder="Введите услуги" th:text="${aboutTheSalon.procedures}"></textarea>
 
     <input type="text" name="img" placeholder="Вставьте ссылку фото" th:value="${addresofthesalon.img}">
     <input type="text" name="address" placeholder="Введите адрес" th:value="${addresofthesalon.address}">
@@ -28,6 +27,28 @@
 
     <button>Изменить</button>
   </form>
+
+  <form th:action="@{/updateindex/service/add}" method="post" class="form">
+    <input type="text" name="img" placeholder="Вставьте ссылку фото">
+    <input type="text" name="name" placeholder="Введите имя">
+    <input type="text" name="description" placeholder="Введите описание">
+
+    <h3 th:text="${error2}" style="color: red"/>
+
+    <button>Добавить</button>
+  </form>
+
+  <div class="div_orders">
+    <div th:each="el : ${services}" id="div_orders">
+      <img th:src="${el.img}" alt="Извините фото не найдено" id="img_order">
+      <h3 th:text="${el.name}"></h3>
+      <h5 th:text="${el.description}"></h5>
+
+      <form th:action="@{'/updateindex/service/delete' + ${el.id}}" method="post">
+        <button>Удалить</button>
+      </form>
+    </div>
+  </div>
 
 </main>
 

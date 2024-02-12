@@ -13,16 +13,13 @@ public class AboutTheSalon {
     private String activity;
     @Column(name = "history", length = 5000)
     private String History;
-    @Column(name = "procedures", length = 5000)
-    private String procedures;
 
     public AboutTheSalon() {
     }
 
-    public AboutTheSalon(String activity, String history, String procedures) {
+    public AboutTheSalon(String activity, String history) {
         this.activity = activity;
         History = history;
-        this.procedures = procedures;
     }
 
     public String getActivity() {
@@ -39,13 +36,5 @@ public class AboutTheSalon {
 
     public void setHistory(String history) {
         History = history;
-    }
-
-    public String getProcedures() {
-        return procedures;
-    }
-
-    public void setProcedures(String procedures) {
-        this.procedures = procedures;
     }
 }
