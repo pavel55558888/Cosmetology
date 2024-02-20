@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Отражение</title>
+    <title>Отражение - эстетик центр</title>
     <link rel="icon" href="/image/logo2.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="/image/logo2.jpg" type="image/x-icon">
 
@@ -39,6 +39,8 @@
          В эстетик-центре ОТРАЖЕНИЕ ведут прием дипломированные косметологи и массажисты,
          Мы с удовольствием поможем решить любые эстетические проблемы вашей кожи и поможем подобрать эффективный домашний уход">
     <meta name="twitter:image" content="/image/logo2.jpg">
+
+    <meta name="yandex-verification" content="a4568ddf44a3cf5c" />
 </head>
 <body>
 
@@ -46,15 +48,15 @@
 
 <main class="container">
 
-    <div class="info_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+    <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
         <a th:text="${ordersInfo}" style="color: red" th:href="@{/expired-product}"/>
     </div>
 
-    <div class="info_orders" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+    <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
         <a th:text="${ordersPersonalInfo}" style="color: red" th:href="@{/expired-product-personal}"/>
     </div>
 
-    <div id = "history" th:each="el : ${aboutTheSalon}">
+    <div id = "history" class="scroll-block" th:each="el : ${aboutTheSalon}">
         <h1 class="history_index" th:text="${el.activity}"/>
         <br>
         <br>
@@ -63,7 +65,9 @@
         <br>
     </div>
 
-    <div class="carousel-container">
+    <h1 class="history_index scroll-block">Услуги</h1>
+
+    <div class="carousel-container scroll-block">
         <div class="card_div">
             <div class="cards-wrapper">
                 <div class="card" th:each="el : ${services}">
@@ -99,9 +103,9 @@
         }
     </script>
 
-    <hr class="hr_index">
+    <hr class="hr_index scroll-block">
 
-    <div id="img_index" th:each="el : ${address}">
+    <div id="img_index" class="scroll-block" th:each="el : ${address}">
         <img th:src="${el.img}" alt="Извините, фото не найдено" class="img">
         <br>
         <br>
@@ -109,10 +113,10 @@
         <h3 th:text = "${el.address}"/>
     </div>
 
-    <hr class="hr_index">
+    <hr class="hr_index scroll-block">
 
-    <h1 id="h1_div">Новости</h1>
-    <div id = "div_index" th:each="el : ${articles}">
+    <h1 id="h1_div" class="scroll-block">Новости</h1>
+    <div id = "div_index" class="scroll-block" th:each="el : ${articles}">
         <h1 th:text="${el.name}"/>
         <a th:href="'/articles/' + ${el.id}"><img th:src="${el.img}" class="img" id="img_news" alt="Извините, фото не найдено"></a>
         <h6 th:text="${el.date}"/>
@@ -121,6 +125,27 @@
     <div th:if="${successMessage}" class="centered-message">
         <div class="custom-alert" role="alert" th:text="${successMessage}"></div>
     </div>
+
+    <script>
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            return (
+                rect.top <= windowHeight * 0.85
+            );
+        }
+        function showBlocksOnScroll() {
+            var blocks = document.querySelectorAll('.scroll-block');
+            blocks.forEach(function(block) {
+                if (isElementInViewport(block)) {
+                    block.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', showBlocksOnScroll);
+        showBlocksOnScroll();
+    </script>
 </main>
 
 <div th:replace="~{layouts/footer :: footer}"></div>

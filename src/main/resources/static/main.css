@@ -115,6 +115,10 @@ footer{
     margin-top: 7px;
     margin-bottom: 10px;
 }
+.div_orders>img{
+    max-height: 60%;
+    min-height: 40%;
+}
 
 .full_order{
     text-align: center;
@@ -521,6 +525,8 @@ input[type="checkbox"] {
 .card > img {
     border-radius: 10px;
     margin-bottom: 20px;
+    max-height: 60%;
+
 }
 .card:not(:first-child) {
     margin-left: -50px;
@@ -543,7 +549,7 @@ input[type="checkbox"] {
     bottom: 10px;
     left: 10px;
     height: 5px;
-    width: 270px;
+    width: 290px;
 }
 
 .emptybar {
@@ -564,8 +570,19 @@ input[type="checkbox"] {
 }
 
 .card:hover .filledbar {
-    width: 270px;
+    width: 290px;
     transition: 0.4s ease-out;
+}
+
+.scroll-block {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-block.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media only screen and (max-width: 600px) {
@@ -649,6 +666,10 @@ input[type="checkbox"] {
     .card {
         height: 280px;
         width: 200px;
+
+    }
+    .card>img{
+        max-height: 60%;
     }
     .bar {
         width: 200px;

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,7 @@ public class IndexControllers {
         model.addAttribute("aboutTheSalon", aboutTheSalons);
 
         List<Articles> articles = articlesRepo.findAll();
+        Collections.reverse(articles);
         model.addAttribute("articles", articles);
 
         List<Services> services = serviceRepo.findAll();

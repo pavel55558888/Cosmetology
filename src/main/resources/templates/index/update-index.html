@@ -27,8 +27,10 @@
 
     <button>Изменить</button>
   </form>
-
+  <br><br><br>
   <form th:action="@{/updateindex/service/add}" method="post" class="form">
+    <h1>Добавить новую услугу</h1>
+
     <input type="text" name="img" placeholder="Вставьте ссылку фото">
     <input type="text" name="name" placeholder="Введите имя">
     <input type="text" name="description" placeholder="Введите описание">
@@ -37,7 +39,9 @@
 
     <button>Добавить</button>
   </form>
+  <br><br><br>
 
+  <h1 class="history_index">Все услуги</h1>
   <div class="div_orders">
     <div th:each="el : ${services}" id="div_orders">
       <img th:src="${el.img}" alt="Извините фото не найдено" id="img_order">

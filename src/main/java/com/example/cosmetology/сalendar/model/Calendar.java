@@ -94,6 +94,10 @@ public class Calendar implements Comparable<Calendar>{
 
     @Override
     public int compareTo(Calendar o) {
-        return this.getTime().compareTo(o.getTime());
+        int res = this.getDate().compareTo(o.getDate());
+        if (res == 0){
+            res = this.getTime().compareTo(o.getTime());
+        }
+        return res;
     }
 }

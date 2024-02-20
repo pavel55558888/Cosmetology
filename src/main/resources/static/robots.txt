@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /index/
+Allow: /basket/
+Sitemap: https://reflection-vrn.ru/sitemap.xml

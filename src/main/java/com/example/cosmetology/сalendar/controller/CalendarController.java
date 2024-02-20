@@ -83,6 +83,7 @@ public class CalendarController {
     @GetMapping("/calendar/select/name")
     public String calendarName(Model model){
         Collections.sort(calendarDate);
+        Collections.reverse(calendarDate);
         model.addAttribute("calendarDate", calendarDate);
         return "calendar/calendar";
     }
