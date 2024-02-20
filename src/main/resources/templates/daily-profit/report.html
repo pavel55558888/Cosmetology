@@ -20,6 +20,14 @@
     <input type="text" name="services" placeholder="Введите оказанные услуги">
     <input type="number" name="profit" placeholder="Введите сумму прибыли">
 
+
+    <select name="ordersExit" type="text" id="option" class="option">
+      <option class="option">Выберите затраченый товар</option>
+      <div th:each="el : ${orders}">
+        <option class="option" th:value="${el.getId()}" th:text="'Код товара:  ' + ${el.getCode()}"/>
+      </div>
+    </select>
+
     <h3 th:text="${error}" style="color: red"/>
 
     <button>Добавить</button>

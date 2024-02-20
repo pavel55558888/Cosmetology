@@ -164,6 +164,10 @@ public class ControlPanelController {
     public String dailyProfit(Model model, @RequestParam(value = "error" , defaultValue = "" ,required = false) String error){
         List<DailyProfit> list = dailyProfitRepo.findAll();
         Collections.reverse(list);
+
+        List<Consumables> orders = consumablesRepo.findAll();
+        model.addAttribute("orders", orders);
+
         model.addAttribute("list",list);
         if (error.equals("null")) {
             model.addAttribute("error", "Заполните все поля!");
