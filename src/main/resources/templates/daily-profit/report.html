@@ -14,7 +14,7 @@
 
 <main class="container">
 
-  <form th:action="@{/controlpanel/dailyprofit/add}" method="post" id="form">
+  <form th:action="@{/dailyprofit/add}" method="post" id="form">
     <h1>Формирование ежедневного отчета</h1>
     <input type="date" name="date" placeholder="Введите дату">
     <input type="text" name="services" placeholder="Введите оказанные услуги">
@@ -27,20 +27,25 @@
         <option class="option" th:value="${el.getId()}" th:text="'Код товара:  ' + ${el.getCode()}"/>
       </div>
     </select>
-
     <h3 th:text="${error}" style="color: red"/>
 
     <button>Добавить</button>
 
     <div th:each="el : ${list}">
       <div id="report">
-        <h1 th:text="${el.date}"/>
-        <h3 th:text="${el.services}"/>
-        <h3 th:text="${el.profit}"/>
+          <h1 th:text="'Дата формирования: ' + ${el.date}"/>
+          <h3 th:text="'Оказанные услуги: ' + ${el.services}"/>
+          <h3 th:text="'Прибыль: ' + ${el.profit}"/>
+          <h3 th:text="'Затраченные товары: ' + ${el.code}"/>
       </div>
     </div>
   </form>
-
+  <script>
+    function toggleCheckbox(checkboxId) {
+      var checkbox = document.getElementById(checkboxId);
+      checkbox.checked = !checkbox.checked;
+    }
+  </script>
 </main>
 
 <div th:replace="~{layouts/footer :: footer}"></div>

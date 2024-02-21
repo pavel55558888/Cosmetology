@@ -1,4 +1,4 @@
-package com.example.cosmetology.controlpanel.model;
+package com.example.cosmetology.daily_profit.model;
 
 import jakarta.persistence.*;
 
@@ -15,11 +15,14 @@ public class DailyProfit {
     private String services;
     @Column(name = "profit")
     private String profit;
+    @Column(name = "code")
+    private String code;
 
-    public DailyProfit(String date, String services, String profit) {
+    public DailyProfit(String date, String services, String profit, String code) {
         this.date = date;
         this.services = services;
         this.profit = profit;
+        this.code = code;
     }
 
     public DailyProfit() {
@@ -55,6 +58,14 @@ public class DailyProfit {
 
     public void setProfit(String profit) {
         this.profit = profit;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

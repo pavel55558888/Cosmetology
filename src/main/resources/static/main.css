@@ -585,9 +585,6 @@ input[type="checkbox"] {
     transform: translateY(0);
 }
 
-.option{
-    max-width: 50%;
-}
 
 @media only screen and (max-width: 600px) {
     .logo{margin-top: 20px}
@@ -680,5 +677,9 @@ input[type="checkbox"] {
     }
     .card:hover .filledbar {
         width: 200px;
+    }
+    .option{
+        padding: 2px 3px;
+        font-size: 10px;
     }
 }

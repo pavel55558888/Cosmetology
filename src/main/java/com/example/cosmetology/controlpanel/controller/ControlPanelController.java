@@ -1,11 +1,7 @@
 package com.example.cosmetology.controlpanel.controller;
 
-import com.example.cosmetology.authorization.model.Role;
-import com.example.cosmetology.authorization.model.User;
-import com.example.cosmetology.Index.Model.AboutTheSalon;
-import com.example.cosmetology.Index.Model.AddressOfTheSalon;
 import com.example.cosmetology.Index.Model.Articles;
-import com.example.cosmetology.controlpanel.model.DailyProfit;
+import com.example.cosmetology.daily_profit.model.DailyProfit;
 import com.example.cosmetology.orderspersonal.model.Consumables;
 import com.example.cosmetology.monthly_report.service.impl.MonthlyReportImpl;
 import com.example.cosmetology.orders.model.Orders;
@@ -25,21 +21,11 @@ import java.util.List;
 @Controller
 public class ControlPanelController {
     @Autowired
-    ArticlesRepo articlesRepo;
+    private ArticlesRepo articlesRepo;
     @Autowired
-    OrdersRepo ordersRepo;
+    private OrdersRepo ordersRepo;
     @Autowired
-    AddressOfTheSalonRepo addressOfTheSalonRepo;
-    @Autowired
-    AboutTheSalonRepo aboutTheSalonRepo;
-    @Autowired
-    ConsumablesRepo consumablesRepo;
-    @Autowired
-    DailyProfitRepo dailyProfitRepo;
-    @Autowired
-    UserRepo userRepo;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private ConsumablesRepo consumablesRepo;
 
 
     @GetMapping("/controlpanel/newarticles")
@@ -158,42 +144,5 @@ public class ControlPanelController {
         model.addAttribute("list", list);
 
         return "order-personal/order-personal";
-    }
-
-    @GetMapping("/controlpanel/dailyprofit")
-    public String dailyProfit(Model model, @RequestParam(value = "error" , defaultValue = "" ,required = false) String error){
-        List<DailyProfit> list = dailyProfitRepo.findAll();
-        Collections.reverse(list);
-
-        List<Consumables> orders = consumablesRepo.findAll();
-        model.addAttribute("orders", orders);
-
-        model.addAttribute("list",list);
-        if (error.equals("null")) {
-            model.addAttribute("error", "Заполните все поля!");
-        } else if(error.equals("max")) {
-            model.addAttribute("error", "Какое-то из полей слишком длинное");
-        }
-        return "daily-profit/report";
-    }
-
-    @PostMapping("/controlpanel/dailyprofit/add")
-    public String dailyProfitAdd(@RequestParam String date,
-                                 @RequestParam String services,
-                                 @RequestParam String profit){
-        if (date.equals("") || services.equals("") || profit.equals("")){
-            return "redirect:/controlpanel/dailyprofit?error=null";
-        } else if (date.length() >= 250 || profit.length() >=250 || services.length() >= 1000) {
-            return "redirect:/controlpanel/dailyprofit?error=max";
-        } else {
-            DailyProfit dailyProfit = new DailyProfit(date, services, profit);
-            dailyProfitRepo.save(dailyProfit);
-
-            MonthlyReportImpl monthlyReport = new MonthlyReportImpl();
-            if (monthlyReport.checkingForTheFirstNumber()){
-                monthlyReport.selectMonthlyReportСheck();
-            }
-        }
-        return "redirect:/";
     }
 }

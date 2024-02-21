@@ -1,7 +1,7 @@
 package com.example.cosmetology.monthly_report.service;
 
 import com.example.cosmetology.orderspersonal.model.Consumables;
-import com.example.cosmetology.controlpanel.model.DailyProfit;
+import com.example.cosmetology.daily_profit.model.DailyProfit;
 import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.monthly_report.model.MonthlyReport;
 

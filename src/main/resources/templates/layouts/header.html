@@ -15,7 +15,7 @@
             <a th:href="@{/}">Главная страница</a>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/dailyprofit}">Составить ежедневный отчет</a>
+                <a th:href="@{/dailyprofit}">Составить ежедневный отчет</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">

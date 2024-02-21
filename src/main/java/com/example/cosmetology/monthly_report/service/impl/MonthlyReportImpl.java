@@ -1,7 +1,7 @@
 package com.example.cosmetology.monthly_report.service.impl;
 
 import com.example.cosmetology.orderspersonal.model.Consumables;
-import com.example.cosmetology.controlpanel.model.DailyProfit;
+import com.example.cosmetology.daily_profit.model.DailyProfit;
 import com.example.cosmetology.orders.model.Orders;
 import com.example.cosmetology.monthly_report.model.MonthlyReport;
 import com.example.cosmetology.monthly_report.service.MonthlyReportService;
@@ -130,7 +130,7 @@ public class MonthlyReportImpl implements MonthlyReportService {
     public void insertMonthlyReport() {
         LocalDate currentDate = LocalDate.now();
 
-        double netProfit = filterDailyProfit()+filterOrder()+filterOrderPersonal();
+        double netProfit = filterDailyProfit()-filterOrder()-filterOrderPersonal();
 
         SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(MonthlyReport.class).buildSessionFactory();
         try {
