@@ -19,6 +19,7 @@ public class CalendarServiceImpl implements CalendarService {
             Calendar hibernate = new Calendar(firstname, name, lastname,number,date,time);
             session.beginTransaction();
             session.persist(hibernate);
+            session.getNamedQuery("deleteCalendar").executeUpdate();
             session.getTransaction().commit();
         } finally {
             factory.close();

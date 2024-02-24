@@ -1,9 +1,17 @@
 package com.example.cosmetology.сalendar.model;
 
+import com.example.cosmetology.basket.service.impl.BasketServiceImpl;
+import com.example.cosmetology.сalendar.service.impl.CalendarServiceImpl;
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "deleteCalendar",
+                query = "CALL deleteCalendar",
+                resultClass = CalendarServiceImpl.class)
+})
 @Entity
 @Table(name = "calendar")
 public class Calendar implements Comparable<Calendar>{
