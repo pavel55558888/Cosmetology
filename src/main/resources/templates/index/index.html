@@ -51,11 +51,19 @@
 <main class="container">
 
     <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-        <a th:text="${ordersInfo}" style="color: red" th:href="@{/expired-product}"/>
+        <a th:text="${ordersInfo}" style="color: orange" th:href="@{/expired-product-6}"/>
     </div>
 
     <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
-        <a th:text="${ordersPersonalInfo}" style="color: red" th:href="@{/expired-product-personal}"/>
+        <a th:text="${ordersPersonalInfo}" style="color: orange" th:href="@{/expired-product-personal-6}"/>
+    </div>
+
+    <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+        <a th:text="${ordersInfoExpired}" style="color: red" th:href="@{/expired-product}"/>
+    </div>
+
+    <div class="info_orders scroll-block" sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
+        <a th:text="${ordersPersonalInfoExpired}" style="color: red" th:href="@{/expired-product-personal}"/>
     </div>
 
     <div id = "history" class="scroll-block" th:each="el : ${aboutTheSalon}">

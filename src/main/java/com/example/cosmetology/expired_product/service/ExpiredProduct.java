@@ -8,7 +8,11 @@ import java.util.List;
 public interface ExpiredProduct {
     List<Orders> SelectOrders();
     List<Consumables> SelectPersonalOrders();
+    List<Orders> SelectOrdersExpired();
+    List<Consumables> SelectPersonalOrdersExpired();
 
     Boolean SelectOrdersBoolean();
     Boolean SelectPersonalOrdersBoolean();
+    Boolean SelectOrdersBooleanExpired();
+    Boolean SelectPersonalOrdersBooleanExpired();
 }

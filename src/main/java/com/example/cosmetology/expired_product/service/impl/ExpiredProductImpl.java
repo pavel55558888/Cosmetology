@@ -11,55 +11,77 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ExpiredProductImpl implements ExpiredProduct {
+    private List<Orders> getOrdersList() {
+        try (SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Orders.class).buildSessionFactory();
+             Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            return session.createQuery("from Orders").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error occurred while fetching orders.", e);
+        }
+    }
+    private List<Consumables> getConsumablesList() {
+        try (SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Consumables.class).buildSessionFactory();
+             Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            return session.createQuery("from Consumables").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error occurred while fetching consumables.", e);
+        }
+    }
 
     @Override
     public List<Orders> SelectOrders() {
-        List<Orders> list;
+        List<Orders> list = getOrdersList();
 
-        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Orders.class).buildSessionFactory();
-        try {
-            Session session = factory.getCurrentSession();
-            session.beginTransaction();
-
-            list = session.createQuery("from Orders").getResultList();
-            session.getTransaction().commit();
-        }finally {
-            factory.close();
-        }
-
-        List<Orders> listFilter = list.stream()
+        LocalDate today = LocalDate.now();
+        return list.stream()
                 .filter(obj -> {
-                    LocalDate date = LocalDate.parse(obj.getExpiration_date());
-                    LocalDate today = LocalDate.now();
-                    return date.isBefore(today.plusMonths(5)) || date.isEqual(today.plusMonths(5));
+                    LocalDate expirationDate = LocalDate.parse(obj.getExpiration_date());
+                    return expirationDate.isBefore(today.plusMonths(6)) && !expirationDate.isBefore(today);
                 })
                 .toList();
-        return listFilter;
     }
 
     @Override
     public List<Consumables> SelectPersonalOrders() {
-        List<Consumables> list;
+        List<Consumables> list = getConsumablesList();
 
-        SessionFactory factory = new Configuration().configure("cosmetology.cfg.xml").addAnnotatedClass(Consumables.class).buildSessionFactory();
-        try {
-            Session session = factory.getCurrentSession();
-            session.beginTransaction();
-
-            list = session.createQuery("from Consumables").getResultList();
-            session.getTransaction().commit();
-        }finally {
-            factory.close();
-        }
-
-        List<Consumables> listFilter = list.stream()
+        LocalDate today = LocalDate.now();
+        return list.stream()
                 .filter(obj -> {
-                    LocalDate date = LocalDate.parse(obj.getExpiration_date());
-                    LocalDate today = LocalDate.now();
-                    return date.isBefore(today.plusMonths(5)) || date.isEqual(today.plusMonths(5));
-        })
+                    LocalDate expirationDate = LocalDate.parse(obj.getExpiration_date());
+                    return expirationDate.isBefore(today.plusMonths(6)) && !expirationDate.isBefore(today);
+                })
                 .toList();
-        return listFilter;
+    }
+
+    @Override
+    public List<Orders> SelectOrdersExpired() {
+        List<Orders> list = getOrdersList();
+
+        LocalDate today = LocalDate.now();
+        return list.stream()
+                .filter(obj -> {
+                    LocalDate expirationDate = LocalDate.parse(obj.getExpiration_date());
+                    return expirationDate.isBefore(today);
+                })
+                .toList();
+    }
+
+    @Override
+    public List<Consumables> SelectPersonalOrdersExpired() {
+        List<Consumables> list = getConsumablesList();
+
+        LocalDate today = LocalDate.now();
+        return list.stream()
+                .filter(obj -> {
+                    LocalDate expirationDate = LocalDate.parse(obj.getExpiration_date());
+                    return expirationDate.isBefore(today);
+                })
+                .toList();
     }
 
     @Override
@@ -71,6 +93,18 @@ public class ExpiredProductImpl implements ExpiredProduct {
     @Override
     public Boolean SelectPersonalOrdersBoolean() {
         List<Consumables> list = SelectPersonalOrders();
+        return list.isEmpty();
+    }
+
+    @Override
+    public Boolean SelectOrdersBooleanExpired() {
+        List<Orders> list = SelectOrdersExpired();
+        return list.isEmpty();
+    }
+
+    @Override
+    public Boolean SelectPersonalOrdersBooleanExpired() {
+        List<Consumables> list = SelectPersonalOrdersExpired();
         return list.isEmpty();
     }
 }

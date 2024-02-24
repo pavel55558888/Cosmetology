@@ -46,9 +46,13 @@ public class IndexControllers {
 
         ExpiredProductImpl expiredProduct = new ExpiredProductImpl();
         if (!expiredProduct.SelectOrdersBoolean()){
-            model.addAttribute("ordersInfo", "Есть продаваемый товар, у которого срок годности меньше 6 месяцев");
-        } if (!expiredProduct.SelectPersonalOrdersBoolean()){
-            model.addAttribute("ordersPersonalInfo", "Есть личный товар, у которого срок годности меньше 6 месяцев");
+            model.addAttribute("ordersInfo", "Есть товар, у которого срок годности меньше 6 месяцев");
+        }if (!expiredProduct.SelectPersonalOrdersBoolean()){
+            model.addAttribute("ordersPersonalInfo", "Есть инвентарь, у которого срок годности меньше 6 месяцев");
+        }if (!expiredProduct.SelectOrdersBooleanExpired()){
+            model.addAttribute("ordersInfoExpired", "Обнаружен просроченный товар");
+        }if (!expiredProduct.SelectPersonalOrdersBooleanExpired()){
+            model.addAttribute("ordersPersonalInfoExpired", "Обнаружен просроченный инвентарь");
         }
         return "index/index";
     }
