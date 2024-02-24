@@ -53,7 +53,7 @@
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER') || hasAuthority('EMPLOYEE')">
-                <a th:href="@{/controlpanel/orderpersonal}">Просмотр инвентаря</a>
+                <a th:href="@{/controlpanel/orderpersonal}">Инвентарь</a>
             </span>
 
             <span sec:authorize="hasAuthority('ADMIN') || hasAuthority('DEVELOPER')">
