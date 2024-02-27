@@ -1,0 +1,235 @@
+[33mcommit e8f3ae9bc6226f6602f357b20d8853b1b429b617[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Tue Feb 27 11:26:09 2024 +0300
+
+    Крайний в больнице2
+
+[33mcommit d1a05141324f81a562c97d633aac25724960bf20[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 13:29:28 2024 +0300
+
+    Крайний в больнице
+
+[33mcommit 918aeb7e3991c5d9bc1be4d7e6b5e2dd895fce4d[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 13:28:46 2024 +0300
+
+    Крайний в больнице
+
+[33mcommit 154294d7fa376adf6a71a8163bbfcd1d37c4ddd1[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 12:58:49 2024 +0300
+
+    Перенапровление после выхода
+
+[33mcommit fd6ef05e56a56c199417183d8fddb72de3c709de[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 12:27:49 2024 +0300
+
+    Перенапровление после авторизации
+
+[33mcommit 6c2d663c7f046976dbd386fa1cbecbf3cf2e6cb1[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 12:16:14 2024 +0300
+
+    готовая просрочкаа
+
+[33mcommit 42483c8317bc3c5582defe1a56d9973c03e4a5c3[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Sat Feb 24 12:14:54 2024 +0300
+
+    готовая просрочка
+
+[33mcommit 3a4a17961e3384e617d5af97e00155e31c09d949[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Wed Feb 21 10:51:21 2024 +0300
+
+    hospital 2
+
+[33mcommit 255930acab5bb2b7deea75360e66d78ec4db933e[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Wed Feb 21 10:40:13 2024 +0300
+
+    Список доделан
+
+[33mcommit 7100cb7b61a73e07012d7cd0f883a7c02f7c2b98[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Tue Feb 20 15:50:26 2024 +0300
+
+    Нужно доделать список
+
+[33mcommit 4b27ad3b37b645aba6c3e08b0a5b75e5ed8af61d[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Tue Feb 20 12:05:17 2024 +0300
+
+    hospital 1
+
+[33mcommit aaa75a6d1da5828fffff0bf7de6e932349acd0f5[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Mon Feb 12 14:15:26 2024 +0300
+
+    Карусель+допы
+
+[33mcommit fa21e26ead0bc440ed3f2ea1e2981bf3190b0b8c[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Mon Feb 12 14:14:59 2024 +0300
+
+    Карусель+допы
+
+[33mcommit 455b689b01821633234bc106037e6dfd839a86e1[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Feb 8 23:20:42 2024 +0300
+
+    Мелкая обнова
+
+[33mcommit 1ad60991b20e3f5911c9c8a150c8e41ba8a3894f[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Tue Feb 6 00:56:08 2024 +0300
+
+    Адаптация под мобильную версию
+
+[33mcommit 0a54b157806aa73a6dc671e084ac399b558c84fe[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Wed Jan 31 12:44:45 2024 +0300
+
+    Вроде финал
+
+[33mcommit 82263b7b0c041b280bf5b08fcbed681f5d29ed03[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Mon Jan 29 22:05:50 2024 +0300
+
+    Кривой поиск
+
+[33mcommit 0bb7483224ea0f8f85af82e508c47ad5011def07[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Fri Jan 26 00:53:16 2024 +0300
+
+    Изменены титлы, добавлено фото к титлам, реализован поиск товаров, исправлен редирект и календарь дополнен кнопками "вперед", "назад"
+
+[33mcommit 0a4ec5a75ea61f444b59922a9ad1a9e9ab828b74[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Jan 25 23:37:40 2024 +0300
+
+    Следующим коментом опишу
+
+[33mcommit ac46f6b3221e4afa1449f83280d40fc80f3a7e1d[m
+Merge: b931f52 963b7fd
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Jan 18 00:42:36 2024 +0300
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b931f52e9114bf9d3d0145d7db742e2b32d4f0ee[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Jan 18 00:42:25 2024 +0300
+
+    Готовая рассылка
+
+[33mcommit 963b7fd0a17ebe7f0cf9f48bb37629cd1b34d3f7[m
+Author: pavel55558888 <132445285+pavel55558888@users.noreply.github.com>
+Date:   Fri Jan 12 22:08:50 2024 +0300
+
+    Update README.md
+
+[33mcommit 8fc161429d926d4eccb21f1b0c35eb5119caeaf0[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Fri Jan 12 22:07:53 2024 +0300
+
+    Ежемесячный отчет без заказов
+
+[33mcommit 33e34a4f77d53bb6bdb00a167a8835f3a40f87eb[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Fri Jan 12 17:50:31 2024 +0300
+
+    на пути к ежемесечному отчету
+
+[33mcommit 4910a03529f57bbf1ba929950dfefc2018e34a26[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Jan 11 18:35:49 2024 +0300
+
+    Распределение ролей по url адресам
+
+[33mcommit d15e1dc0e85435f2189d90b0ba083c96de5cba8b[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Thu Jan 11 15:46:40 2024 +0300
+
+    Готовая хранимая процедура
+
+[33mcommit 9a62d17bf31a53698452d579c8121bb17d649fc5[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Mon Jan 8 19:24:31 2024 +0300
+
+    Готовая инфа о просрочке
+
+[33mcommit 3984356dce9eab434931de01b43c8cec34510aab[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Sun Jan 7 18:07:25 2024 +0300
+
+    Готовая корзина
+
+[33mcommit 92625faaf0b222cfd401425ffd0e090ead47017c[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Thu Jan 4 16:24:48 2024 +0300
+
+    корзина 100%
+
+[33mcommit b2c2fa07814e1bd9bb3f9e7b9864ab98da7710f4[m
+Author: Cosmetology <p-vikulinpb@mail.ru>
+Date:   Thu Jan 4 15:44:11 2024 +0300
+
+    корзина 50%
+
+[33mcommit f2ce4d05c2c8d7fde53a666d98cfa6bc73b9df2f[m
+Merge: 74c3964 0f9814a
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Wed Jan 3 14:29:33 2024 +0300
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 74c3964a4c43f6bded19b8ed380d03538a12b77b[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Wed Jan 3 14:29:24 2024 +0300
+
+    без майла
+
+[33mcommit 0f9814a7d72bdd97f58e13c4fd08d3b08dd301af[m
+Author: pavel55558888 <132445285+pavel55558888@users.noreply.github.com>
+Date:   Sat Dec 30 13:42:00 2023 +0300
+
+    Update README.md
+
+[33mcommit d82095879da26189d400329357a08175f2992dad[m
+Author: pavel55558888 <132445285+pavel55558888@users.noreply.github.com>
+Date:   Sat Dec 30 13:41:22 2023 +0300
+
+    Create README.md
+
+[33mcommit 5b4b9d96b55382a0356d97573dae862ce2e1dbd8[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Sat Dec 30 13:35:41 2023 +0300
+
+    ошибка майл
+
+[33mcommit 44bc5dcedb2829f8622ba04422b265097fe1c377[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Fri Dec 29 12:28:25 2023 +0300
+
+    Обновление 4
+
+[33mcommit bd7f15edf0d2c756d949495aaa30146016e14dda[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Sat Dec 23 00:29:45 2023 +0300
+
+    Обновление 3
+
+[33mcommit fdb44ae4d1c0d518dd3a2c51a19f4db087a46247[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Fri Dec 22 12:45:02 2023 +0300
+
+    Обновление 2
+
+[33mcommit 5a216790433d4b4d720960271a1e40e8a15dccb7[m
+Author: pavel <p-vikulinpb@mail.ru>
+Date:   Tue Dec 19 14:34:18 2023 +0300
+
+    Обновление
